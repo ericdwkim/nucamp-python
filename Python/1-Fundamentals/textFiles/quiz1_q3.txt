@@ -1,0 +1,21 @@
+What will the output of the following while loop be?
+
+x = 0
+while x < 10:
+    x = x+1
+    if x == 1:
+        print("small")
+    if x > 2:
+        x = x+1
+        print("medium")
+    if x == 5:
+        x = 7
+        print("big")
+        
+
+x = 0; small
+x = 1; N/A
+x = 2; medium
+x = 3; medium
+x = 7; medium
+x = 8; medium
