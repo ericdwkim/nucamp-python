@@ -24,6 +24,3 @@ print("The data type for variable 'nucamp_locations' is:", type(nucamp_locations
 print("The data type for variable 'Eric_Info' is:", type(Eric_Info))
 print("The data type for variable 'my_cool_tuple' is:", type(my_cool_tuple))
 print("The data type for variable 'my_cool_set' is:", type(my_cool_set))
-
-# testing testing 1 2 3
-asdfasdfsdf
