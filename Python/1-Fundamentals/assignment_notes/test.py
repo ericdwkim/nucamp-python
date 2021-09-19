@@ -1,3 +1,7 @@
+"""
+# Task 1 - game variables
+"""
+
 wizard = "Wizard"
 elf = "Elf"
 human = "Human"
@@ -16,6 +20,18 @@ orc_dmg = 175
 dragon_hp = 300
 dragon_dmg = 50
 
+"""
+# Task 2 - prompt player
+
+char_choice = input("1) Wizard\n2) Elf\n3) Human\n" "Choose your character: ")
+"""
+
+"""
+# Task 3 - set up infinite while loop & wrap input() from task 2 inside
+        asdf = print("You have chosen the ", character,
+                     ":\nHealth: ", my_hp, "\nDamage: ", my_dmg)
+
+"""
 while True:
     # char_choice is class `str`
     char_choice = input(
@@ -57,7 +73,7 @@ while True:
         break
     my_hp = my_hp - dragon_dmg
     print("The Dragon strikes back at", character)
-    print("The", character + "'s hitpoints are now:", my_hp)
+    print("The", character, "'s hitpoints are now:", my_hp)
     if my_hp <= 0:
         print("\nThe", character, "has lost the battle.")
         break
