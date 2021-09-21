@@ -65,9 +65,10 @@ while True:
 while True:
     if character == 'exit':
         break
-    dragon_hp = dragon_hp - my_dmg
-    print("\nThe", character, "damaged the Dragon!")
-    print("The Dragon's hitpoints are now:", dragon_hp, "\n")
+    elif character:
+        dragon_hp = dragon_hp - my_dmg
+        print("\nThe", character, "damaged the Dragon!")
+        print("The Dragon's hitpoints are now:", dragon_hp, "\n")
     if dragon_hp <= 0:
         print("The Dragon has lost the batle")
         break
