@@ -2,6 +2,7 @@ wizard = "Wizard"
 elf = "Elf"
 human = "Human"
 orc = "Orc"
+exit = "Exit"
 
 wizard_hp = 70
 elf_hp = 100
@@ -19,26 +20,32 @@ dragon_dmg = 50
 while True:
     # char_choice is class `str`
     char_choice = input(
-        "1) Wizard\n2) Elf\n3) Human\n" "Choose your character: ").lower()
-    # match strings and convert appropriately
-    if char_choice == 'wizard' or '1':
+        "1) Wizard\n2) Elf\n3) Human\n4) Orc\n" "Choose your character: ").lower()
+    if char_choice == 'wizard' or char_choice == '1':
         character = wizard
         my_hp = wizard_hp
         my_dmg = wizard_dmg
         print("You have chosen the character: ", character, "\nHealth: ",
               my_hp, "\nDamage: ", my_dmg)
         break
-    if char_choice == 'elf' or '2':
+    if char_choice == 'elf' or char_choice == '2':
         character = elf
         my_hp = elf_hp
         my_dmg = elf_dmg
         print("You have chosen the character: ", character, "\nHealth: ",
               my_hp, "\nDamage: ", my_dmg)
         break
-    if char_choice == 'human' or '3':
+    if char_choice == 'human' or char_choice == '3':
         character = human
         my_hp = human_hp
         my_dmg = human_dmg
+        print("You have chosen the character: ", character, "\nHealth: ",
+              my_hp, "\nDamage: ", my_dmg)
+        break
+    if char_choice == 'orc' or char_choice == '4':
+        character = orc
+        my_hp = orc_hp
+        my_dmg = orc_dmg
         print("You have chosen the character: ", character, "\nHealth: ",
               my_hp, "\nDamage: ", my_dmg)
         break
