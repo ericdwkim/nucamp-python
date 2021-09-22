@@ -8,13 +8,13 @@ wizard_hp = 70
 elf_hp = 100
 human_hp = 150
 orc_hp = 9000
-exit_hp = 0
+# exit_hp = 0
 
 wizard_dmg = 150
 elf_dmg = 100
 human_dmg = 20
 orc_dmg = 175
-exit_dmg = 0
+# exit_dmg = 0
 
 dragon_hp = 300
 dragon_dmg = 50
@@ -52,11 +52,8 @@ while True:
               my_hp, "\nDamage: ", my_dmg)
         break
     if option == 'exit' or option == '5':
-        character = exit
-        my_hp = exit_hp
-        my_dmg = exit_dmg
         print("You have fled the battle!")
-        break
+        quit()
     else:
         print("Unknown character!")
 
@@ -65,10 +62,9 @@ while True:
 while True:
     if character == 'exit':
         break
-    elif character:
-        dragon_hp = dragon_hp - my_dmg
-        print("\nThe", character, "damaged the Dragon!")
-        print("The Dragon's hitpoints are now:", dragon_hp, "\n")
+    dragon_hp = dragon_hp - my_dmg
+    print("\nThe", character, "damaged the Dragon!")
+    print("The Dragon's hitpoints are now:", dragon_hp, "\n")
     if dragon_hp <= 0:
         print("The Dragon has lost the batle")
         break
