@@ -1,6 +1,6 @@
 def reverse(str):
-    # reverse a user-input `str`; slice()?
-    return #reversedString
+    return str[::-1]
+
 
 name = input("What is your name? ")
 print("Your name reversed is:", reverse(name))
