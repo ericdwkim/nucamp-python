@@ -21,9 +21,13 @@ print(name, "has been registered with a starting balance of $" + str(balance))
 
 while True:
     print("          === Automated Teller Machine ===          \nLOGIN")
-    name_to_validate = input("Enter name to register: ")
+    name_to_validate_raw = input("Enter name to register: ")
+    name_len = len(name_to_validate_raw)
+    if name_len not in range(1, 10):
+        print("The maximum name length is 10 characters")
+        continue
     pin_to_validate = input("Enter PIN: ")
-    if name_to_validate == name and pin_to_validate == pin:
+    if name_to_validate_raw == name and pin_to_validate == pin:
         print("Login successful!")
         break
     else:
