@@ -37,7 +37,7 @@ while True:
     atm_menu(name)
     option = input("Choose an option: ")
     if option == "1":
-        print(show_balance(balance))
+        show_balance(balance)
     elif option == "2":
         balance = deposit(balance)
         print("Current Balance: $" + str(show_balance(balance)))
