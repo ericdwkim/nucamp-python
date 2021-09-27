@@ -6,12 +6,11 @@ hand = []
 
 while diamonds:
     option = input("Press enter to pick a card, or Q + enter to quit\n")
-    # user hits enter keystroke
     if option == "":
         dia_random = random.choice(diamonds)
         diamonds.remove(dia_random)
         hand.append(dia_random)
-        print(hand[0], "has been randomly chosen and added to your hand\n")
+        print(hand[-1], "has been randomly chosen and added to your hand\n")
         print("Remaining cards", diamonds)
         print("Your hand", hand)
     if option == "Q":
