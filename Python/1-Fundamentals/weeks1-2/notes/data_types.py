@@ -22,7 +22,7 @@ the (4) composite data types: list, dictionary, tuple, set
 nucamp_locations = ["Seattled", "Tacoma", "Bellevue"]
 
 # Data composed as a `Dictionary`; ORDERED collection of key-value pairs; equivalent to an array
-# indexed by their unique keys, not automatically indexed 0, 1, 2, 3...
+# indexed by their unique keys, not automatically zero-indexed
 Eric_Info = {"name": "Eric", "age": 27, "cash": 420.69, "sexy": True}
 
 
