@@ -21,8 +21,10 @@ the (4) composite data types: list, dictionary, tuple, set
 # Data composed as a `List`; ordered sequence of multiple values
 nucamp_locations = ["Seattled", "Tacoma", "Bellevue"]
 
-# Data composed as a `Dictionary`; unordered collection of key-value pairs; equivalent to an array
+# Data composed as a `Dictionary`; ORDERED collection of key-value pairs; equivalent to an array
+# indexed by their unique keys, not automatically indexed 0, 1, 2, 3...
 Eric_Info = {"name": "Eric", "age": 27, "cash": 420.69, "sexy": True}
+
 
 # Data composed as a `Tuple`; similiar to a list, but immutable
 my_cool_tuple = ["apple", "bannana", "cherry"]
