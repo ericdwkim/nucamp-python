@@ -26,8 +26,18 @@ nucamp_locations = ["Seattled", "Tacoma", "Bellevue"]
 Eric_Info = {"name": "Eric", "age": 27, "cash": 420.69, "sexy": True}
 
 
-# Data composed as a `Tuple`; similiar to a list, but immutable
-my_cool_tuple = ["apple", "bannana", "cherry"]
+# Data composed as a `Tuple`; similiar to a list, but IMMUTABLE
+# parentheses are optional*; commas are a _MUST_
+# * - parentheses are a _MUST_ if it is an empty tuple
+# if a tuple only has 1 item, parenthesis are optional, BUT a trailing comma is a _MUST_
+# tuples can contain values of *any* data type, including composite data types! 
+# tuples can contain duplicate values
+"""
+my_empty_tuple = ()
+
+one_item_tuple = ("lion",)
+"""
+my_cool_tuple = ("apple", "bannana", "cherry")
 
 # Data composed as a `Set`; unordered collection of values, immutable, no duplicate values
 my_cool_set = {"cats", "dogs", "bridges"}
