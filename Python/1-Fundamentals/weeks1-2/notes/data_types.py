@@ -23,6 +23,10 @@ nucamp_locations = ["Seattled", "Tacoma", "Bellevue"]
 
 # Data composed as a `Dictionary`; ORDERED collection of key-value pairs; equivalent to an array
 # indexed by their unique keys, not automatically zero-indexed
+
+"""
+empty_dict = {}
+"""
 Eric_Info = {"name": "Eric", "age": 27, "cash": 420.69, "sexy": True}
 
 
@@ -30,7 +34,7 @@ Eric_Info = {"name": "Eric", "age": 27, "cash": 420.69, "sexy": True}
 # parentheses are optional*; commas are a _MUST_
 # * - parentheses are a _MUST_ if it is an empty tuple
 # if a tuple only has 1 item, parenthesis are optional, BUT a trailing comma is a _MUST_
-# tuples can contain values of *any* data type, including composite data types! 
+# tuples can contain values of *any* data type, including composite data types!
 # tuples can contain duplicate values
 """
 my_empty_tuple = ()
@@ -40,6 +44,22 @@ one_item_tuple = ("lion",)
 my_cool_tuple = ("apple", "bannana", "cherry")
 
 # Data composed as a `Set`; unordered collection of values, immutable, no duplicate values
+
+"""
+sets are unordered and therefore are not indexed, and therefore contents within a set cannot be
+accessed by bracket notation (eg: someSet[0])
+contents can be accessed using `for in` loops 
+
+items within a set cannot be mutable data types (lists, dicts, sets)
+
+set_A = {"someString", 1234, (True, False)} --> this is a set
+
+set_B = {"someString", 1234, [True, False]} --> this is NOT a set as it contains a list 
+
+set_C = {"someString", 1234, 1234} --> this is a set that only contains (2) values as no duplicates are allowed in a set
+
+empty_set = set() 
+"""
 my_cool_set = {"cats", "dogs", "bridges"}
 
 print("The data type for variable 'nucamp_locations' is:",
