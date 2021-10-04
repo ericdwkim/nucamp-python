@@ -21,10 +21,12 @@ while True:
         username = input("Enter username: ")
         password = input("Enter password: ")
         authorized_user = login(database, username, password)
+        print("login auth_user", authorized_user)
     elif option == "2":
         username = input("Enter username: ")
         password = input("Enter password: ")
         authorized_user = register(database, username)
+        print("register auth_user", authorized_user)
         if authorized_user != "":
             database[username] = password
     elif option == "3":
