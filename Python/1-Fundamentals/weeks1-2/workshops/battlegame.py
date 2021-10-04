@@ -60,8 +60,8 @@ while True:
 # Task 4 - Battle w/ the Dragon!
 
 while True:
-    if character == 'exit':
-        break
+    # if character == 'exit':
+    #     break
     dragon_hp = dragon_hp - my_dmg
     print("\nThe", character, "damaged the Dragon!")
     print("The Dragon's hitpoints are now:", dragon_hp, "\n")
