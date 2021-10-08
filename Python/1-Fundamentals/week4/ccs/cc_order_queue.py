@@ -24,14 +24,26 @@ class IceCreamShop:
 
     # customer, flavor = strings; scoops = integer
     def take_order(self, customer, flavor, scoops):
+
+        # declare local attributes
         self.customer = customer
         self.flavor = flavor
         self.scoops = scoops
-        if (flavor in self.flavors) and scoops[1:4]:
-            print("flavor not available")
 
-    # def show_all_orders():
-    #     # do stuff
+        # check if flavor is in list of flavors
+        # check if # of scoops is b/w 1 -3 (inclusive) scoops
+        if (flavor in self.flavors) and (scoops in range(1, 4)):
+            # print success message
+            print("order has been created")
 
-    # def next_order():
-    #     # do stuff
+        # print error message if conditionals not met for order
+        else:
+            print("flavor not in list or # of scoops must be b/w 1 -3")
+
+        order = {"customer": customer, "flavor": flavor, "scoops": scoops}
+
+# def show_all_orders():
+#     # do stuff
+
+# def next_order():
+#     # do stuff
