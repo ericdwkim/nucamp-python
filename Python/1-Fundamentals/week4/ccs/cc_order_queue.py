@@ -36,14 +36,16 @@ class IceCreamShop:
             # print success message
             print("order has been created")
 
-        # print error message if conditionals not met for order
-        else:
-            print("flavor not in list or # of scoops must be b/w 1 -3")
-
         order = {"customer": customer, "flavor": flavor, "scoops": scoops}
+        self.orders.enqueue(order)
 
-# def show_all_orders():
-#     # do stuff
+        elif flavor not in self.flavors:
+            print("select a different flavor")
+
+
+def show_all_orders(self):
+    print("Pending Orders")
+    for order in
 
 # def next_order():
 #     # do stuff
