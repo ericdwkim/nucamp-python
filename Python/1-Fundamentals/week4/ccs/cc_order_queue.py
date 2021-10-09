@@ -22,30 +22,40 @@ class IceCreamShop:
         self.flavors = flavors
         self.orders = Queue()
 
-    # customer, flavor = strings; scoops = integer
     def take_order(self, customer, flavor, scoops):
 
-        # declare local attributes
-        self.customer = customer
-        self.flavor = flavor
-        self.scoops = scoops
-
-        # check if flavor is in list of flavors
-        # check if # of scoops is b/w 1 -3 (inclusive) scoops
         if (flavor in self.flavors) and (scoops in range(1, 4)):
-            # print success message
-            print("order has been created")
+            print("Order created!")
 
-        order = {"customer": customer, "flavor": flavor, "scoops": scoops}
-        self.orders.enqueue(order)
+            order = {"customer": customer,
+                     "flavor": flavor, "scoops": scoops}
+
+            self.orders.enqueue(order)
 
         elif flavor not in self.flavors:
-            print("select a different flavor")
+            print("Flavor not available")
+
+        elif scoops not in range(1, 4):
+            print("Choose between 1 - 3 scoops!\n")
+
+    def show_all_orders(self):
+        print("\nAll Pending Ice Cream Orders:")
+        for dict in self.orders.items:
+            print("Customer:", dict["customer"], "-- Flavor:",
+                  dict["flavor"], "--Scoops:", dict["scoops"])
+
+    def next_order(self):
+        print("\nNext Order Up!")
+        order = self.orders.dequeue()
+        print(
+            f'Customer: {order["customer"]} -- Flavor: {order["flavor"]} -- Scoops: {order["scoops"]}.')
 
 
-def show_all_orders(self):
-    print("Pending Orders")
-    for order in
-
-# def next_order():
-#     # do stuff
+shop = IceCreamShop(["rocky road", "mint chip", "pistachio"])
+shop.take_order("Zachary", "pistachio", 3)
+shop.take_order("Marcy", "mint chip", 1)
+shop.take_order("Leopold", "vanilla", 2)
+shop.take_order("Bruce", "rocky road", 0)
+shop.show_all_orders()
+shop.next_order()
+shop.show_all_orders()
