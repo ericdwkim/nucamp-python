@@ -20,7 +20,7 @@ class BankUser(User):
         self.balance = 0
 
     def show_balance(self):
-        print(self.name, "has a balance of:", self.balance)
+        print(f'{self.name} has an account balance of: ${self.balance}')
 
     def withdraw(self, balance):
         self.balance -= balance
@@ -29,8 +29,12 @@ class BankUser(User):
         self.balance += balance
 
     def transfer_money(self, pin, tAmount, tUser):
-        print("You are transferring", tAmount, "to", tUser)
+        print(f'\nYou are transferring ${tAmount} to {tUser.name}')
+        print("Authentication required")
+        print(f'Enter your PIN: {self.pin}')
         if pin == self.pin:
+            print("Transfer authorized")
+            print(f'Transferring ${tAmount} to {tUser.name}')
             self.balance -= int(tAmount)
             tUser.balance += int(tAmount)
             return True
@@ -38,16 +42,19 @@ class BankUser(User):
             return False
 
     def request_money(self, pin, password, tAmount, tUser):
-        print("You are requesting", tAmount, "from", tUser)
+        print(f'\nYou are requesting ${tAmount} from {tUser.name}')
+        print("User authentication is required...")
+        print(f'Enter {tUser.name}\'s PIN: {tUser.pin}')
+        print(f'Enter your password: {self.password}')
         if pin == self.pin:
             if password == self.password:
+                print("Request authorized")
+                print(f'{tUser.name} sent ${tAmount}')
                 tUser.balance -= int(tAmount)
                 self.balance += int(tAmount)
             else:
-                print("test")
                 return False
         else:
-            print("test2")
             return False
 
 
@@ -86,25 +93,28 @@ class BankUser(User):
 """ Driver Code for Task 5a - transfer_money() """
 
 # bankUser1 = BankUser("Joe", "1111", "coolPass")
+# bankUser2 = BankUser("Sally", "1000", "whatever")
+# bankUser2.show_balance()
+
 # bankUser1.deposit(50)
 # bankUser1.show_balance()
 
-# bankUser1.transfer_money("1111", "10", "Sally")
+# bankUser1.transfer_money("1111", "10", bankUser2)
 # bankUser1.show_balance()
 
 """ Driver Code for Task 5b - request_money() """
 
 bankUser1 = BankUser("Joe", "1111", "coolPass")
-bankUser1.deposit(50)
-bankUser1.show_balance()
-
 bankUser2 = BankUser("Sally", "1000", "whatever")
+
 bankUser2.deposit(5000)
 bankUser2.show_balance()
+bankUser1.show_balance()
 
 bankUser2.transfer_money("1000", 500, bankUser1)
+bankUser2.show_balance()
 bankUser1.show_balance()
-bankUser2.show_balance()
 
-bankUser2.request_money("1000", "whatever", "10", bankUser1)
+bankUser2.request_money("1000", "whatever", 250, bankUser1)
 bankUser2.show_balance()
+bankUser1.show_balance()
