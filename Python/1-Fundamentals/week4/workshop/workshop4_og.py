@@ -34,11 +34,14 @@ class BankUser(User):
         pin_to_validate = input("Enter your PIN: ")
         if pin_to_validate != self.pin:
             print("Invalid PIN. Transaction canceled.")
-            return
-        print("Transfer authorized")
-        print(f'Transferring ${tAmount} to {tUser.name}')
-        self.balance -= int(tAmount)
-        tUser.balance += int(tAmount)
+        elif pin_to_validate == self.pin:
+            print("Transfer authorized")
+            print(f'Transferring ${tAmount} to {tUser.name}')
+            self.balance -= int(tAmount)
+            tUser.balance += int(tAmount)
+            return True
+        else:
+            return False
 
     def request_money(self, tAmount, tUser):
         print(f'\nYou are requesting ${tAmount} from {tUser.name}')
