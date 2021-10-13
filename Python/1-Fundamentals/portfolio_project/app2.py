@@ -1,32 +1,18 @@
 from my_pkgs.fns import char_menu
 
-"""
-Every `Character` has a name, hp, dmg_pts
-
-"""
-
 
 class Character:
-    def __init__(self, name, hp, dmg_pts, ):
+    def __init__(self, name, hp_max, dmg_pts):
         self.name = str(name)
-        self.hp = int(hp)
+        self.hp_max = int(hp_max)
+        self.hp = int(hp_max)
         self.dmg_pts = int(dmg_pts)
-        pass
-    # TODO: attack function; finish implementation
 
     def attack(self, attk_char):
         print(f'The {self.name} has attacked the {attk_char.name}!')
-        attk_char.hp = attk_char.hp - self.dmg_pts
-        # wizard.hp_new (445) = wizard.hp (500) - warlock.dmg (55)
-        print(f'The {attk_char.name}\'s health is now: {attk_char.hp}!')
-
-
-"""
-Every Spellcaster consumes `Character` w/
-extension of `heal_pts`
-
-hp and dmg_pts initalized to 0
-"""
+        attk_char.hp = attk_char.hp_max - self.dmg_pts
+        print(
+            f'The {attk_char.name}\'s health is now: {attk_char.hp} points!')
 
 
 class Spellcaster(Character):
@@ -36,14 +22,19 @@ class Spellcaster(Character):
         # self.dmg_pts = 100
         self.heal_pts = 0  # initialize heal_pts
 
-    # TODO: heal function
+    def heal(self, heal_char):
+        if heal_char.hp < heal_char.hp_max:
+            heal_char.hp = heal_char.hp_max
+            print(
+                f'The {self.name} has healed the {heal_char.name} by {self.heal_pts} points\nThe {heal_char.name}\'s health has been restored to {heal_char.hp} points')
 
 
 class Sidekick(Spellcaster):
     def __init__(self, name):
         super().__init__(name)
         pass
-    # TODO: kill fn?
+    # TODO: assist() fn; increases `ass_char`'s dmg_pts
+    # def assist(self, ass_char):
 
 
 """
@@ -65,11 +56,13 @@ Character instances
 
 """
 warlock = Character("Warlock", 1_000, 55)
+# print(f'Warlock\'s health points: {warlock.hp}')
 
 wizard = Spellcaster("Wizard")
-wizard.hp = 500
+wizard.hp_max = 500
 wizard.dmg_pts = 100
 wizard.heal_pts = 50
+# print(f'Wizard\'s health points: {wizard.hp}')
 
 minion = Sidekick("Minion")
 
@@ -80,14 +73,24 @@ attack() testing
 
 """
 
-warlock.attack(wizard)
-# TODO more testing
+# warlock.attack(wizard)
+# wizard.attack(g_titan)
+g_titan.attack(warlock)
 
+# print(warlock.hp_max)
+
+"""
+heal() testing
+
+"""
+wizard.heal(warlock)
 
 # char_option = input(
 #     "1) Warlock\n2) Witch\n3) Minion\n4) Spellcaster\n5) Escape\n" "Choose your character: ").lower()
 
 # TODO: minion; escape fixes
+
+# TODO: minion's assist(ass_char) increases the dmg_pts of `ass_char`
 
 # while True:
 #     char_menu(char_option)
