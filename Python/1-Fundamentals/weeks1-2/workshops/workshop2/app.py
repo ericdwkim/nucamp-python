@@ -17,6 +17,17 @@ def atm_menu(name):
 # register_pin_raw = input("Enter PIN to register: ")
 # balance = 0
 
+while True:
+    if name_len not in range(1, 10):
+        print("The maximum name length is 10 characters")
+        return True
+    if (pin_len < 4) or (pin_len > 4):
+        print("PIN must contain 4 numbers")
+        return True
+    elif (name_len in range(1, 10)) and (pin_len == 4):
+        print(
+            f'{register_name} has been registered with a starting balance of ${raw_balance}.')
+        break
 
 # def register(register_name, register_pin, register_bal):
 #     raw_name = register_name
