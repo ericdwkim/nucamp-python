@@ -18,8 +18,11 @@ def logout(name):
 
 
 def register(register_name, register_pin, register_bal):
-    name_len = len(register_name)
-    pin_len = len(register_pin)
+    register_name_raw = input("Enter name to register: ")
+    register_pin_raw = input("Enter PIN to register: ")
+    balance = 0
+    name_len = len(register_name_raw)
+    pin_len = len(register_pin_raw)
     raw_balance = float(register_bal)
     while True:
         if name_len not in range(1, 10):

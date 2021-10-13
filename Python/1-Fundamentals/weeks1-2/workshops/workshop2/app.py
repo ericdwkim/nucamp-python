@@ -13,9 +13,9 @@ def atm_menu(name):
     print("------------------------------------------")
 
 
-register_name_raw = input("Enter name to register: ")
-register_pin_raw = input("Enter PIN to register: ")
-balance = 0
+# register_name_raw = input("Enter name to register: ")
+# register_pin_raw = input("Enter PIN to register: ")
+# balance = 0
 
 
 # def register(register_name, register_pin, register_bal):
@@ -37,8 +37,8 @@ balance = 0
 #             raw_
 #             break
 
-
-register(register_name_raw, register_pin_raw, balance)
+name_raw = name
+register()
 
 # while True:
 #     print("          === Automated Teller Machine ===          \nLOGIN")
