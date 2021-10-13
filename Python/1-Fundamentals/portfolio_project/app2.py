@@ -1,4 +1,4 @@
-from my_pkgs.fns import char_menu
+from my_pkgs.fns import char_main_menu, char_support_menu
 
 
 class Character:
@@ -58,6 +58,9 @@ Character instances
 warlock = Character("Warlock", 1_000, 55)
 # print(f'Warlock\'s health points: {warlock.hp}')
 
+witch = Character("Witch", 1_200, 65)
+# print(f'Witch\'s health points: {witch.hp}')
+
 wizard = Spellcaster("Wizard")
 wizard.hp_max = 500
 wizard.dmg_pts = 100
@@ -69,62 +72,70 @@ minion = Sidekick("Minion")
 g_titan = Enemy("Gorilla Titan", 5_000, 40)
 
 """
-attack() testing
+START OF attack(), heal(), assist() testing =========================================================
 
 """
 
 # warlock.attack(wizard)
 # wizard.attack(g_titan)
-g_titan.attack(warlock)
+# g_titan.attack(warlock)
 
 # print(warlock.hp_max)
 
-"""
-heal() testing
+# wizard.heal(warlock)
 
 """
-wizard.heal(warlock)
+END of attack(), heal(), assist() testing =========================================================
 
-# char_option = input(
-#     "1) Warlock\n2) Witch\n3) Minion\n4) Spellcaster\n5) Escape\n" "Choose your character: ").lower()
+"""
 
+
+char_main_option = input("1) Warlock\n2) Witch\n3) Escape\n"
+                         "Choose your main character: ").lower()
+
+char_support_option = input(
+    " 1) Minion\n2) Wizard\n3) Escape\n" "Choose your support character: ").lower()
 # TODO: minion; escape fixes
 
 # TODO: minion's assist(ass_char) increases the dmg_pts of `ass_char`
 
-# while True:
-#     char_menu(char_option)
-#     if char_option == "warlock" or char_option == "1":
-#         character = warlock
-#         char_name = warlock.name
-#         my_hp = warlock.hp
-#         my_dmg = warlock.dmg_pts
-#         print(
-#             f'You have chosen the character: {char_name}\nHealth: {my_hp}\nAttack:{my_dmg}')
-#         break
-#     elif char_option == "wizard" or char_option == "2":
-#         character = wizard
-#         char_name = wizard.name
-#         my_hp = wizard.hp
-#         my_dmg = wizard.dmg_pts
-#         my_heal = wizard.heal_pts
-#         print(
-#             f'You have chosen the character: {char_name}\nHealth: {my_hp}\nAttack:{my_dmg}\nHeal: {my_heal}')
-#         break
-# elif char_option == "minion" or char_option == "3":
-#     character = minion
-#     my_hp = minion_hp
-#     my_dmg = minion_dmg
-#     my_heal = minion_heal
-#     print("You have chosen the character: ", character, "\nHealth: ",
-#           my_hp, "\nAttack: ", my_dmg, "\nHeal: ", my_heal)
-#     break
-# elif char_option == "escape" or char_option == "5":
-#     print("You have safely fled the battle!")
-#     quit()
-# else:
-#     print("Unknown character!")
-#     break
+while True:
+    # char_main_menu(char_main_option) # TODO: UI/UX
+    if char_main_option == "warlock" or char_main_option == "1":
+        character = warlock
+        char_name = warlock.name
+        my_hp = warlock.hp_max
+        my_dmg = warlock.dmg_pts
+        print(
+            f'You have chosen the character: {char_name}\nHealth: {my_hp}\nAttack:{my_dmg}')
+        break
+    # elif char_option == "witch" or char_option == "2":
+    #     character = wizard
+    #     char_name = wizard.name
+    #     my_hp = wizard.hp
+    #     my_dmg = wizard.dmg_pts
+    #     my_heal = wizard.heal_pts
+    #     print(
+    #         f'You have chosen the character: {char_name}\nHealth: {my_hp}\nAttack:{my_dmg}\nHeal: {my_heal}')
+    #     break
+    elif char_main_option == "escape" or char_main_option == "3":
+        print("You have safely fled the battle!")
+        quit()
+    else:
+        print("Unknown character!")
+        break
+
+while True:
+    # char_support_menu(char_support_option) # TODO: UI/UX
+    if char_support_option == "minion" or char_support_option == "1":
+        character = minion
+        my_hp = minion.hp_max
+        my_dmg = minion.dmg_pts
+        my_heal = minion.heal_pts
+        print(
+            f'You have chosen the character: {character.name}\nHealth: {my_hp}\nAttack: {my_dmg}\nHeal: {my_heal}')
+        break
+
 
 # while True:
 #     gorilla_titan_hp = gorilla_titan_hp - my_dmg
