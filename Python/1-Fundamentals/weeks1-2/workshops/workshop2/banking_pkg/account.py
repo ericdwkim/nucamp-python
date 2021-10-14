@@ -17,13 +17,13 @@ def logout(name):
     print(f"Goodbye " + name + "!")
 
 
-def register(register_name, register_pin, register_bal):
-    register_name_raw = input("Enter name to register: ")
-    register_pin_raw = input("Enter PIN to register: ")
+def validate_login(name_to_validate, pin_to_validate, balance_init):
+    name = input("Enter name to register: ")
+    pin = input("Enter PIN to register: ")
     balance = 0
-    name_len = len(register_name_raw)
-    pin_len = len(register_pin_raw)
-    raw_balance = float(register_bal)
+    name_len = len(name_to_validate)
+    pin_len = len(pin_to_validate)
+    raw_balance = float(balance_init)
     while True:
         if name_len not in range(1, 10):
             print("The maximum name length is 10 characters")
@@ -33,7 +33,5 @@ def register(register_name, register_pin, register_bal):
             return True
         elif (name_len in range(1, 10)) and (pin_len == 4):
             print(
-                f'{register_name} has been registered with a starting balance of ${raw_balance}.')
+                f'{name_to_validate} has been registered with a starting balance of ${raw_balance}.')
             break
-# def validate_login(name_to_validate, pin_to_valiate):
-#     # do something
