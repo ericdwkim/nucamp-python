@@ -115,16 +115,3 @@ while True:
     if my_hp <= 0:
         print("\nThe", character, "has lost the battle.")
         break
-
-
-"""
-TODO: 
-1. play again option 
-2. healing functionality
-3. tag team battle, so (2) characters vs gorilla titan? 
-4. ??
-5. check for project requirements (if any)
-
-
-"""
-# test
