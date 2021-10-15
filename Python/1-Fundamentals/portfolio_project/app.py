@@ -55,6 +55,7 @@ while True:
         elif sk_move_option == "Assist" or sk_move_option == "4":
             character_s.assist(character_m)
         elif sk_move_option == "Escape" or sk_move_option == "5":
+            print("You have fled the battle!")
             quit()
         else:
             print("Not a move!")
@@ -67,6 +68,7 @@ while True:
         elif sk_move_option == "Heal" or sk_move_option == "3":
             character_s.heal(character_m)
         elif sk_move_option == "Escape" or sk_move_option == "4":
+            print("You have fled the battle!")
             quit()
         else:
             print("Not a move!")
