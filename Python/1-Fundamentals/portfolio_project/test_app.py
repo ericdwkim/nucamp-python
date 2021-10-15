@@ -1,9 +1,15 @@
-from app2 import *
+# from app import *
+from my_pkgs.char_classes import Warlock, Witch, Minion, Gorilla
 
-warlock.attack(wizard)
-wizard.attack(g_titan)
-g_titan.attack(warlock)
 
-print(warlock.hp_max)
+warlock = Warlock()
+print(warlock.hp_max, warlock.dmg_pts, warlock.name)
 
-wizard.heal(warlock)
+witch = Witch()
+print(witch.hp_max, witch.dmg_pts, witch.name)
+
+minion = Minion()
+print(minion.hp_max, minion.dmg_pts, minion.heal_pts, minion.name)
+
+gorilla = Gorilla()
+print(gorilla.name, gorilla.hp_max, gorilla.dmg_pts)
