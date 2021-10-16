@@ -37,7 +37,7 @@ while True:
         print("Unknown support character!")
     sk_move_option = sidekick_moves()
 print(
-    f'You have chosen the character: {character_s.name}\nHealth: {character_s.hp_max}\nAttack: {character_s.dmg_pts}\nHeal: {character_s.heal_pts}')
+    f'You have chosen the character: {character_s.name}\nHealth: {character_s.hp_max}\nAttack: {character_s.dmg_pts}\nHeal: {character_s.heal_pts}\n')
 
 
 while True:
