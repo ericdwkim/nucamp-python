@@ -19,41 +19,27 @@ def guess_random_number(tries, start, stop):
         else:
             print("you have failed at life")
 
+# test task 1
+# guess_random_number(5, 0, 10)
+
 
 def guess_random_num_linear(tries, start, stop):
     rand_num = random.randint(start, stop)
-    print(f'the target num is {rand_num}')
-    num_array = []
-    x = start
-    comp_guess = int(tries)
-    while x < stop:
-        num_array.append(x)
-        x += 1
-    # print(num_array, comp_guess)
+    print(f'The target number is {rand_num}')
 
-    for i in num_array:
-        if comp_guess > 0:
-            if i == rand_num:
-                print("you guessed the correct #")
-                return
-            elif i < rand_num:
-                print("guess higher")
-                tries -= 1
-            elif i > rand_num:
-                print("guess lower")
-                tries -= 1
-            else:
-                print(f'you failure, the target # was {rand_num}')
-        if comp_guess == 0:
-            print("The program has failed to guess the correct #")
+    for i in range(start, stop + 1):
+        if tries <= 0:
+            print("The program has failed to guess the correct number.")
             break
+        if i == rand_num:
+            print("The progam has guessed the correct number!")
+            return
+        elif i < rand_num:
+            print(f'The program is guessing... {i}')
+        elif i > rand_num:
+            print(f'The program is guessing... {i}')
+        tries -= 1
 
 
-"""
-test task 1
-
-"""
-
-# guess_random_number(5, 0, 10)
-
+# test task 2
 guess_random_num_linear(5, 0, 10)
