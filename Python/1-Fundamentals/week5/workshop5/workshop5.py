@@ -45,50 +45,6 @@ def guess_random_num_linear(tries, start, stop):
 # guess_random_num_linear(5, 0, 10)
 
 
-"""def fizzbuzz(num):
-    for n in range(1, num + 1):
-        if (n % 3 == 0) and (n % 5 == 0):
-            str = "FizzBuzz"
-        elif (n % 3 == 0):
-            str = "Fizz"
-        elif (n % 5 == 0):
-            str = "Buzz"
-        else:
-            str = n
-        print(str)
-
-# fizzbuzz(50)
-
-"""
-
-
-"""
-def guess_random_num_binary(tries, start, stop):
-    rand_num = random.randint(start, stop + 1)
-    print("Number of tries", tries)
-    print(f'The target number is {rand_num}')
-
-    for n in range(start, stop + 1):
-        pivot = stop / 2
-        print(pivot)
-        if tries <= 0:
-            print("Your program failed to find the number.")
-            break
-        elif n == rand_num:
-            str = f'Found it! {rand_num}'
-        elif (n > pivot):
-            str = f'Guessing higher! {n}'
-        elif (n < pivot):
-            str = f'Guessing lower! {n}'
-        elif (n == pivot):
-            str = f'Found it! {rand_num}'
-        else:
-            str = n
-        tries -= 1
-        print(str)
-"""
-
-
 def guess_random_num_binary(tries, start, stop):
     rand_num = random.randint(start, stop + 1)
     upper_bound = stop
