@@ -16,7 +16,7 @@ while True:
         quit()
     else:
         print("Unknown main character!")
-    char_move_option = char_moves()
+    # char_move_option = char_moves()
 
 print(
     f'You have chosen the character: {character_m.name}\nHealth: {character_m.hp_max}\nAttack: {character_m.dmg_pts}')
@@ -35,16 +35,16 @@ while True:
         quit()
     else:
         print("Unknown support character!")
-    sk_move_option = sidekick_moves()
+    # sk_move_option = sidekick_moves()
 print(
     f'You have chosen the character: {character_s.name}\nHealth: {character_s.hp_max}\nAttack: {character_s.dmg_pts}\nHeal: {character_s.heal_pts}')
 
 
 while True:
-    gorilla = Gorilla()
-    gorilla.attack(character_m)
-    print(f'What does {character_s.name} want to do?')
     if character_s.name == "Minion":
+        gorilla = Gorilla()
+        gorilla.attack(character_m)
+        print(f'What does {character_s.name} want to do?')
         sk_move_option = sidekick_moves()
         if sk_move_option == "attack" or sk_move_option == "1":
             character_s.attack(gorilla)
@@ -59,17 +59,36 @@ while True:
             quit()
         else:
             print("Not a move!")
+            continue
+        break
     elif character_s.name == "Wizard":
-        sk_move_option = spellcaster_moves()
-        if sk_move_option == "attack" or sk_move_option == "1":
+        gorilla = Gorilla()
+        gorilla.attack(character_m)
+        print(f'What does {character_s.name} want to do?')
+        sc_move_option = spellcaster_moves()
+        if sc_move_option == "attack" or sc_move_option == "1":
             character_s.attack(gorilla)
-        elif sk_move_option == "defend" or sk_move_option == "2":
+        elif sc_move_option == "defend" or sc_move_option == "2":
             character_s.defend(character_m)
-        elif sk_move_option == "Heal" or sk_move_option == "3":
+        elif sc_move_option == "Heal" or sc_move_option == "3":
             character_s.heal(character_m)
-        elif sk_move_option == "Escape" or sk_move_option == "4":
+        elif sc_move_option == "Escape" or sc_move_option == "4":
             print("You have fled the battle!")
             quit()
         else:
             print("Not a move!")
+            continue
     break
+
+while True:
+    if character_m.name == "Warlock":
+        gorilla = Gorilla()
+        gorilla.attack(character_s)
+        print(f'What does {character_m.name} want to do?')
+        char_move_option = char_moves()
+        if char_move_option == "attack" or char_move_option == "1":
+            character_m.attack(gorilla)
+        elif char_move_option == "defend" or char_move_option == "2":
+            character_m.defend(character_s)
+
+        break
