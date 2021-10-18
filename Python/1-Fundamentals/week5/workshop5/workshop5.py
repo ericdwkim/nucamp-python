@@ -70,5 +70,3 @@ def guess_random_num_binary(tries, start, stop):
 
 # test task 3
 guess_random_num_binary(5, 0, 100)
-
-# TEST TEST TEST

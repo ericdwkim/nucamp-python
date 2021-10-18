@@ -1,0 +1,19 @@
+===================================
+range(start, stop, step)
+>> returns `range(start, stop)` 
+default start is 0 
+stop is req'd; exclusive
+default step is 1
+
+len(someList)
+>> returns # of elements in someList
+===================================
+
+Binary Search
+
+(1) upper and lower bounds of the elements' *indices*, 
+    NOT of the # of elements in the list
+(2) returns the index of the inputted target value
+    which is why we simply `return pivot` (the pivot's index) 
+    for the first conditional where we check if the value of pivot
+    is equal to the target value

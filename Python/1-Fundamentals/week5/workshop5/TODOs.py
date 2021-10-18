@@ -2,10 +2,9 @@
 # TODO
 10/17/21
 
-- Searching Algos
-Exercise: Linear Search
-Intro to Binary Search
-Exercise: Binary Search
+- Searching Algos [X]
+Exercise: Linear Search [X]
+Exercise: Binary Search [X]
 
 - Sorting Algos
 same shit
