@@ -2,6 +2,7 @@ def binary_search(the_list, target):
     # defines L/U bounds of elements' indices
     # not the # of elements in the list
     lower_bound = 0
+    # deriving the highest index of the passed-in list
     upper_bound = len(the_list) - 1
     # while 0 <= 9
     while lower_bound <= upper_bound:
