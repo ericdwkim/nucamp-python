@@ -94,4 +94,4 @@ class Gorilla(Titan):
         self.name = "Gorilla Titan"
         self.hp_max = 10_000
         self.hp = 10_000
-        self.dmg_pts = 50
+        self.dmg_pts = 5000
