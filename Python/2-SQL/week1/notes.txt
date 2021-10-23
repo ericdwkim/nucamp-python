@@ -1,0 +1,101 @@
+Entity --> named object composed of data fields (attributes)
+        Classes represent Entities in OOP
+
+    example:
+                        """
+                        import datetime
+
+                        class User:
+                            username = "admin"
+                            password = "admin123"
+                            birthdate = datetime.datetime.now()
+
+                        # User object w/ (3) member variables
+                        u1 = User()
+                        print(u1.username, u1.password, u1.birthdate)
+
+                        """
+        in this example, `User` class is an Entity with (3) attributes: 
+        username, password, birthdate
+
+
+attributes --> can be of any primitive data type
+    ie: int, string, bool 
+          ---> can be of any data type in pSQL  
+            ie: timestamp, UUID (rng id)
+======================================================
+                        New Vocab
+
+Normalization --> the process of expanding the different attributes 
+    into their own entities for better architecture, making it more modular
+
+NULL --> db term meaning blank or none
+     --> correlated to Python's `None` data type (only 1 value = None)
+
+Nullable --> data that can have no value or "blank" | "none" | "None" | null
+            is said to be "Nullable"
+
+Non-nullable --> data which must have a value; req'd value is said to be
+                "non-nullable"
+======================================================
+
+            Entity-Relationship (ER) Diagrams - conventions
+
+1. Entities --> rectangles
+
+2. Relationships --> diamonds 
+
+3. attributes --> ovals
+
+4. non-nullable --> bold lines from entity to non-nullable attribute(s)
+
+5. nullable --> thin lines from entity to nullable attribute(s); 
+                may or may not be null
+                ie: address line 2 commonly used for PO Boxes
+                ex: see `email` in user_example.drawio 
+
+6. uniqueness -> underlined attribute names
+                ex: see `username` and `email` in user_example.drawio
+
+======================================================
+            Data Integrity Constraints
+
+Purpose of Integrity Constraints:
+    - keeps data clean, consistent, and correct
+    - prevents the insertion of incorrect or "dirty" data 
+    - enforces convention defined by db admin
+    - enhances performance of db queries 
+
+1. Nullability; `NULL`
+
+2. Uniqueness; 
+
+======================================================
+
+            Relationship Participation - conventions
+
+1. Entity participates at *most* once; zero or once, but not more than once
+    Notation: arrow from entity to relationship
+    EX: see `Song` entity's arrow line to `Belongs to` relationship in music.drawio
+
+2. Entity participates once and *only* once
+    Notation: bold arrow from entity to relationship 
+    EX: see `Artist` entity's bold line to `Name` attribute in music.drawio
+
+3. Entity participates zero or more times
+    Notation: thin (?) line from entity to relationship
+
+4. Entity participates 1 or more times
+    Notation: bold line from entity to relationship
+
+EXERCISE:
+             1. an album must belong to 1 or more artists [X]
+             2. an artist has 0 or more albums [X]
+                - bold line from Album entity to `Belongs to` relationship
+                  to indicate that an album must belong to at least one artist
+
+                - thin line from Artist to `Belongs to` relationship to indicate
+                  that an artist may or may not have any album(s)
+
+             3. an artist must have 1 and only 1 user account [X]
+                (artist to user account should be a one-to-one relationship)
