@@ -99,3 +99,5 @@ EXERCISE:
 
              3. an artist must have 1 and only 1 user account [X]
                 (artist to user account should be a one-to-one relationship)
+                - a bold arrow from `Artist` entity to `Has A` relationship
+                  to indicate that an artist has one and only 1 user account
