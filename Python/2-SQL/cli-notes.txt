@@ -1,0 +1,42 @@
+================================
+            Docker CLI 
+
+docker compose up -d
+--> start or restart all services in the docker-compose.yml file
+the `-d` flag runs containers in "detached" (background) mode; can be ran w/o this flag which will show log msgs from the process
+
+ docker compose ps 
+--> lists the containers for these services
+    NAME, COMMAND, SERVICE, STATUS, PORTS
+
+docker compose stop
+--> stops all services (containers) in the docker-compose.yml file; equivalent to powering down a computer
+    can be verified by running `docker compose ps` and seeing STATUS of "exited" 
+
+docker compose down
+--> completely tears down the containers; should NOT use this unless you wish to reset EVERYTHING 
+
+docker exec -it pg_container psql -U postgres
+--> "give me an interactive terminal (`-it`) inside pg_container and execute psql as a default User"
+
+================================
+            pSQL CLI
+
+postgres=# \?
+--> prints out a list of psql commands
+tips: use spacebar to view next page; use enter to advance to the next line
+
+postgres=# \c <db_name>
+--> connects to the db 
+
+postgres=# \dt
+--> shows data tables w/in connected db (if any)
+
+postgres=# \q
+--> quit
+
+postgres=# \l
+--> list dbs
+
+postgres=# \d <table_name>
+--> describe table
