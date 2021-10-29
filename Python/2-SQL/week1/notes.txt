@@ -80,7 +80,7 @@ Purpose of Integrity Constraints:
 
 2. Entity participates once and *only* once
     Notation: bold arrow from entity to relationship 
-    EX: see `Artist` entity's bold line to `Name` attribute in music.drawio
+    EX: see `Artist` entity's bold line to `Has a` relationship in music.drawio
 
 3. Entity participates zero or more times
     Notation: thin line from entity to relationship
