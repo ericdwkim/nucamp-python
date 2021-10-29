@@ -75,7 +75,7 @@ Purpose of Integrity Constraints:
             Relationship Participation - conventions
 
 1. Entity participates at *most* once; zero or once, but not more than once
-    Notation: arrow from entity to relationship
+    Notation: regular arrow from entity to relationship
     EX: see `Song` entity's arrow line to `Belongs to` relationship in music.drawio
 
 2. Entity participates once and *only* once
@@ -83,7 +83,7 @@ Purpose of Integrity Constraints:
     EX: see `Artist` entity's bold line to `Name` attribute in music.drawio
 
 3. Entity participates zero or more times
-    Notation: thin (?) line from entity to relationship
+    Notation: thin line from entity to relationship
 
 4. Entity participates 1 or more times
     Notation: bold line from entity to relationship
@@ -101,3 +101,22 @@ EXERCISE:
                 (artist to user account should be a one-to-one relationship)
                 - a bold arrow from `Artist` entity to `Has A` relationship
                   to indicate that an artist has one and only 1 user account
+
+======================================================
+
+                    Naming conventions
+Entities and attributes should be in singular form in ER Diagrams
+
+1. Column names in singular from; such as ER entities and attributes
+    ex: a `Title` attribute (off of Song entity) --> "song_title"
+
+2. Table names in plural from
+    ex: a `Song` and `Artist` entities should be `songs` and `artists`
+        as their table names
+
+3. Many-to-many bridge tables named w/ referenced table names should be
+    joined by an underscore
+
+    ex: an Event-Customer relationship that is a many-to-many type
+        (multiple events can be purchased by multiple customers) should
+        have a table name of `events_customers`

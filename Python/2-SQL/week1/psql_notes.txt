@@ -1,0 +1,39 @@
+Creating a table syntax:
+
+CREATE TABLE <table_name> (
+    <column_1_name> + data type + constraints (if any)
+    <column_2_name> + data type + constraints (if any)
+    <column_3_name> + data type + constraints (if any)
+    PRIMARY KEY (self_id)
+)
+================================
+
+Foreign key (fk) --> a column or set of columns in one table, that uniquely
+                    identifies rows in another table; it is common for a
+                    table to have 2 or more fks
+
+Adding foreign key constraints syntax (example for a many-to-many):
+
+ALTER TABLE <tableA_tableB_name> (
+ADD CONSTRAINT fk_<tableA_tableB_name>_<tableA_name>
+FOREIGN KEY (tableA_pk)
+REFERENCES <tableA_name>
+
+ALTER TABLE <tableA_tableB_name> (
+ADD CONSTRAINT fk_<tableA_tableB_name>_<tableB_name>
+FOREIGN KEY (tableB_pk)
+REFERENCES <tableB_name>
+
+
+================================================================================================================================
+    In summary, you can generally follow these steps to translate an ER diagram into SQL tables with foreign key references:
+
+1) Identify relationships
+2) Classify relationships by type (one-to-one, one-to-many, many-to-many)
+3) Write CREATE TABLE statements, ignoring foreign key columns
+4) Add foreign key columns to CREATE TABLE statements depending on relationship type
+     Note: Many-to-many requires an extra "bridge table" with 2 foreign keys.
+5) Execute CREATE TABLE statements
+6) Write and execute ALTER TABLE statements to enforce foreign key constraints
+================================================================================================================================
+
