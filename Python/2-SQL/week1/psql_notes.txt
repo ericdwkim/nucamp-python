@@ -23,8 +23,12 @@ ALTER TABLE <tableA_tableB_name> (
 ADD CONSTRAINT fk_<tableA_tableB_name>_<tableB_name>
 FOREIGN KEY (tableB_pk)
 REFERENCES <tableB_name>
+================================================================================================================================
 
-
+ALTER TABLE table_to_alter
+ADD CONSTRAINT new_constraint_name
+FOREIGN KEY (new_key_name)
+REFERENCES table_to_reference;
 ================================================================================================================================
     In summary, you can generally follow these steps to translate an ER diagram into SQL tables with foreign key references:
 

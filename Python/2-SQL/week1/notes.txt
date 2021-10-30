@@ -66,9 +66,9 @@ Purpose of Integrity Constraints:
     - enforces convention defined by db admin
     - enhances performance of db queries 
 
-1. Nullability; `NULL`
+1. Nullability; `NULL`; thin lines
 
-2. Uniqueness; 
+2. Uniqueness; `UNIQUE`; underlined text
 
 ======================================================
 
@@ -120,3 +120,4 @@ Entities and attributes should be in singular form in ER Diagrams
     ex: an Event-Customer relationship that is a many-to-many type
         (multiple events can be purchased by multiple customers) should
         have a table name of `events_customers`
+======================================================

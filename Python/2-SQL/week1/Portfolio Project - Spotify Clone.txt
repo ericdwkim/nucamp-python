@@ -28,7 +28,7 @@ Relationships:
 Attributes:
 
 [X]    - MUST have one UNIQUE sequential identifier; `ID` in bold*, underlined text
- *TODO: what does bolded text attribute mean again?! ahhhh
+ *QUESTION: what does bolded text attribute mean again?! ahhhh
 
 [X]    - MUST have at least one UNIQUE username; `username`
 [X]    - MUST have at least one UNIQUE email address; `email_address`
