@@ -155,10 +155,13 @@ ADD CONSTRAINT fk_employees_territories_territories
 FOREIGN KEY (territory_id)
 REFERENCES territories;
 
+ALTER TABLE public.employees
+ADD COLUMN reports_to INT UNIQUE;
+
 ALTER TABLE employees
-ADD COLUMN reports_to INT UNIQUE
-ADD CONSTRAINT fk_reports_to_employees
-FOREIGN KEY (employee_id)
-REFERENCES employees;
+ADD CONSTRAINT fk_reports_to_employee
+FOREIGN KEY (reports_to)
+REFERENCES employees
+
 -- TODO create more constraints here...
 
