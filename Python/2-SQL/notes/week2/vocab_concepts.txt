@@ -1,0 +1,51 @@
+                    I. SQL CREATE (Review)
+
+PRIMARY KEY are implicitly UNIQUE and NOT NULL
+
+SQL client connects to (1) DB at a time either via psql or pgAdmin
+
+Schema --> namespaces within dbs; provides logical groups/structure 
+
+Data cell's unique tuple format: (database, schema, table, column, row)
+
+===============================================================================
+                        II. SQL INSERT
+
+Syntax:
+
+INSERT INTO <table_name> (column1_name, column2_name, column3_name)
+VALUES (val1, val2, val3);
+
+Example of inserting a new row into the `cars` table w/ year, make model
+
+INSERT INTO cars (year, make, model)
+VALUES (2016, 'Toyota', 'CRV');
+
+NOTE: there was no insertion of the primary key `id` column for the `cars` table
+      as `INSERT` automatically sets a new row and since the pk was set to SERIAL
+      it will automatically increment the `id` column
+
+===============================================================================
+                        III. SQL ALTER
+
+Syntax for adding a new column:
+
+ALTER TABLE <table_name_to_alter>
+ADD <new_col_name> <data_type> <data_constraint(s)> <default_clause>
+-----------------------------------------------------------------
+Example of adding a new column to `cars` table example:
+
+ALTER TABLE cars
+ADD wheel_count INT NOT NULL DEFAULT 4;
+-----------------------------------------------------------------
+
+Example of inserting a new row to `cars` w/ overriding value for `wheel_count`:
+
+INSERT INTO cars (make, model, wheel_count)
+VALUES ('Elio', 'P5', 3);
+
+>>> year = NULL; make = Elio; model = P5; wheel_count = 3
+NOTE: since `year` was omitted with the INSERT, it defaulted to a `null` value as 
+      the car has not been released yet; also the wheel_count default of 4 has been
+      overriden by the inputted value 3
+
