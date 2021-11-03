@@ -1,0 +1,72 @@
+                                    DATA MANIPULATION
+`ON DELETE` <solution_here> 
+
+example:
+
+CREATE TABLE orders (
+    id SERIAL PRIMARY KEY,
+    amount_spent NUMERIC NOT NULL,
+    customer_id INT NOT NULL,
+    CONSTRAINT fk_customer
+        FOREIGN KEY (customer_id)
+        REFERENCES customers(id)
+        ON DELETE <solution_here>
+);
+
+0. `CASCADE` solution --> maintains fk integrity, but forces all depedent records to be
+                          deleted at the same time
+
+    example:
+
+                    CREATE TABLE orders (
+                        id SERIAL PRIMARY KEY,
+                        amount_spent NUMERIC NOT NULL,
+                        customer_id INT NOT NULL,
+                        CONSTRAINT fk_customer
+                            FOREIGN KEY (customer_id)
+                            REFERENCES customers(id)
+                            ON DELETE CASCADE
+                    );
+
+
+1. `SET NULL` solution --> set fk value(s) to NULL (req's that the fk be NULLABLE); retains
+                           records but leaves them "dangling" w/o meaningful relationships
+                           to the other db records
+
+    example:
+
+                    CREATE TABLE orders (
+                        id SERIAL PRIMARY KEY,
+                        amount_spent NUMERIC NOT NULL,
+                        customer_id INT NOT NULL,
+                        CONSTRAINT fk_customer
+                            FOREIGN KEY (customer_id)
+                            REFERENCES customers(id)
+                            ON DELETE SET NULL
+                    );
+
+2. `SET DEFAULT` solution --> sets fk values to default values; retains records, but forces
+                              them to maintain a reference  
+
+    example:
+
+                    CREATE TABLE orders (
+                        id SERIAL PRIMARY KEY,
+                        amount_spent NUMERIC NOT NULL,
+                        customer_id INT NOT NULL,
+                        CONSTRAINT fk_customer
+                            FOREIGN KEY (customer_id)
+                            REFERENCES customers(id)
+                            ON DELETE SET NULL
+                    );
+
+==========================================================
+`TRUNCATE` --> removes all records, but not the table itself
+
+Syntax: TRUNCATE TABLE cars;
+
+----------------------------------------------------------
+
+`DROP` --> removes all the records and the table(s) themselves
+
+Syntax: DROP TABLE cars; 

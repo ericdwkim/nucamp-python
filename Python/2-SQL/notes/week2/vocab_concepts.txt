@@ -32,7 +32,7 @@ Syntax for adding a new column:
 
 ALTER TABLE <table_name_to_alter>
 ADD <new_col_name> <data_type> <data_constraint(s)> <default_clause>
------------------------------------------------------------------
+
 Example of adding a new column to `cars` table example:
 
 ALTER TABLE cars
