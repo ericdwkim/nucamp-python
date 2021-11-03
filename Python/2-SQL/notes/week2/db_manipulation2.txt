@@ -1,0 +1,88 @@
+                    I. SQL CREATE (Review)
+
+PRIMARY KEY are implicitly UNIQUE and NOT NULL
+
+SQL client connects to (1) DB at a time either via psql or pgAdmin
+
+Schema --> namespaces within dbs; provides logical groups/structure 
+
+Data cell's unique tuple format: (database, schema, table, column, row)
+
+===============================================================================
+                        II. SQL INSERT
+
+Syntax:
+
+INSERT INTO <table_name> (column1_name, column2_name, column3_name)
+VALUES (val1, val2, val3);
+
+Example of inserting a new row into the `cars` table w/ year, make model
+
+INSERT INTO cars (year, make, model)
+VALUES (2016, 'Toyota', 'CRV');
+
+NOTE: there was no insertion of the primary key `id` column for the `cars` table
+      as `INSERT` automatically sets a new row and since the pk was set to SERIAL
+      it will automatically increment the `id` column
+
+===============================================================================
+                        III. SQL ALTER
+
+Syntax for adding a new column:
+
+ALTER TABLE <table_name_to_alter>
+ADD <new_col_name> <data_type> <data_constraint(s)> <default_clause>
+-----------------------------------------------------------------
+Example of adding a new column to `cars` table example:
+
+ALTER TABLE cars
+ADD wheel_count INT NOT NULL DEFAULT 4;
+-----------------------------------------------------------------
+
+Example of inserting a new row to `cars` w/ overriding value for `wheel_count`:
+
+INSERT INTO cars (make, model, wheel_count)
+VALUES ('Elio', 'P5', 3);
+
+>>> year = NULL; make = Elio; model = P5; wheel_count = 3
+NOTE: since `year` was omitted with the INSERT, it defaulted to a `null` value as 
+      the car has not been released yet; also the wheel_count default of 4 has been
+      overriden by the inputted value 3
+===============================================================================
+                        IV. SQL UPDATE
+
+Syntax:
+
+UPDATE <table_name_to_update>
+SET column1 = val1, column2 = val2, ...
+WHERE some_column = some_val
+
+Example of updating the `cars` table to specify the `make` w/ the official company name
+(where ever the `make` column has 'Ford' as its value, set the new value as the company name):
+
+UPDATE cars
+SET make = 'The Ford Motor Company'
+WHERE make = 'Ford';
+
+===============================================================================
+                        V. SQL DELETE & DROP
+
+Syntax:
+
+DELETE FROM <table_name>
+WHERE some_column = some_value;
+
+Example of deleting any row where `year` is `null`:
+
+DELETE FROM cars
+WHERE year IS NULL;
+
+(NOTE: use `IS` or `IS NOT` instead of `=` or `!=` when comparing to null)
+
+ON DELETE solutions:
+(1) CASCADE --> deletes all corresponding records
+    ex: Alice has a customer_id of 1. If Alice is deleted from the `customers` table, all corresponding orders by Alice w/ a
+        fk `customer_id` of `1` (aka Alice) in the `orders` table will also be deleted
+
+(2) SET NULL --> set fk to NULL (key must be nullable)
+--------------------
