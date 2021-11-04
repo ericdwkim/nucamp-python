@@ -124,7 +124,7 @@ SELECT b.author as book_author, b.title as book_title FROM books b;
 ===============================================================================
 ===============================================================================
 
-                                Conditional querying
+                                Conditional Expressions
 
 1. Filtering
 
@@ -183,6 +183,62 @@ example query:
 
 SELECT b.title as twentieth_century_books
 FROM books b
-WHERE b.year BETWEEN 1900 AND 2000;
+WHERE b.year BETWEEN 1900 AND 1999;
 
 >>> | twentieth_century_books | --> 1. The Great Gatsby (1925) 2. Big Fish (1998) 
+
+NOTE: upper/lower bounds are INCLUSIVE, so if the above query had
+`WHERE b.year BETWEEN 1900 AND 2000;`, this would include the year 2000
+which is the start of the 21st century! Keep this in mind when deciding
+which upper/lower bounds to define 
+-------------------------------------------------------------------------------
+                                LIKE and ILIKE
+
+`%` --> matches any sequence of zero or more characters; aka "fuzzy matching"
+`_` --> matches any single character; aka "strict matching"
+
+example:
+
+input value using `LIKE` = "Big Fish"
+pattern recognized = "Big%"; result = TRUE
+ >>> since % is a wildcard 'Big%" will match "Big Fish"
+
+example 2 (case sensitive) for book titles that *begin* w/ T:
+
+SELECT b.title FROM books b
+WHERE b.title LIKE 'T%'
+>> |1. The Great Gatsby |
+
+example 3 (case sensitive) for book titles that *contain* T: 
+
+SELECT b.title FROM books b
+WHERE b.title LIKE '%T%'
+>> |1. The Great Gatsby |
+
+example 3 (case insensitive) for book titles that *contain* T or t: 
+
+SELECT b.title FROM books b
+WHERE b.title ILIKE '%T%'
+>> |1. Frankenstein| 2. The Great Gatsby | Don Quixote |
+-------------------------------------------------------------------------------
+                                IN 
+- evalutes as TRUE if list of options contains specified value
+- similar to `in` keyword in Python syntax:
+    
+    ------------------------
+    def IN(value, options):
+        return value in options
+
+    options = [1, 2, 3]
+    1 in options >>> TRUE
+    4 in options >>> FALSE
+    ------------------------
+
+
+example:
+
+SELECT b.title, b.year FROM books b
+WHERE b.year IN (1990, 1986, 1996, 1998);
+>>> |1.  Big Fish (1998) |
+
+
