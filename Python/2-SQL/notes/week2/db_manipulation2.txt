@@ -85,4 +85,104 @@ ON DELETE solutions:
         fk `customer_id` of `1` (aka Alice) in the `orders` table will also be deleted
 
 (2) SET NULL --> set fk to NULL (key must be nullable)
---------------------
+===============================================================================
+                        VI. SQL SELECT
+
+Syntax:
+
+SELECT column_name1, column_name2, FROM <table_name>;
+
+Example of selecting (2) columns from a table called books:
+
+SELECT title, author FROM books;
+
+NOTE: the SELECT query will return a result set in the order it was queried, so if 
+`SELECT author, title FROM books;` was the query, even if the `books` table had 
+| id | title | author | genre | year |, it would return the following:
+| author | title | since that is how the query was defined 
+
+-------------------------------------------------------------------------------
+
+                    Aliasing *column* names w/ `SELECT as` 
+
+Syntax:
+
+SELECT <column1_name> as <new_col1_name>, <column2_name> as <new_col2_name> FROM <table_name>
+
+Example:
+
+SELECT author as book_author, title as book_title FROM books;
+
+>>> | author | title | -- changed to --> | book_author | book_title |
+-------------------------------------------------------------------------------
+                        
+                Aliasing *table* names w/ dot notation in a SELECT query
+
+Syntax example:
+
+SELECT b.author as book_author, b.title as book_title FROM books b;
+===============================================================================
+===============================================================================
+
+                                Conditional querying
+
+1. Filtering
+
+WHERE --> provides a way to filter result sets
+
+    ex: SELECT title, author FROM books WHERE genre = 'Novel';
+    " from the books table, grab the title and author values only for the data sets that
+      have a genre value equal to string 'Novel' " 
+-------------------------------------------------------------------------------
+2. Logical Operators (AND, OR, >, >=, <>) 
+        (tip: '<>' is the not-equal operator in SQL syntax aka '!=')
+example:
+
+SELECT title, author, year
+FROM books
+WHERE genre = 'Novel' AND year < 1900; 
+-------------------------------------------------------------------------------
+3. Duplicates
+
+DISTINCT --> eliminates duplicate rows from the result set
+
+example:
+
+SELECT genre FROM books;
+>>> | genre| --> 1. Novel 2. Novel 3. Magical Realism 4. Novel
+
+SELECT DISTINCT genre FROM books;
+>>> | genre| --> 1. Novel 2. Magical Realism 
+-------------------------------------------------------------------------------
+
+4. Capping result set
+
+LIMIT --> caps result set at specified # of rows
+
+example:
+
+SELECT DISTINCT genre FROM books;
+>>> | genre| --> 1. Novel 2. Magical Realism 
+
+SELECT DISTINCT genre FROM books LIMIT 1;
+>>> | genre| --> 1. Novel
+-------------------------------------------------------------------------------
+
+5. BETWEEN (logical SQL operator)
+    - operators on a column using given upper and lower bounds
+    - evalutes as TRUE if column's value is b/w the U/L bounds
+    - bounds are *inclusive*, that is, a column_value = upper OR lower bound will
+      evaluate as TRUE
+
+python fn equivalent:
+
+    def BETWEEN(value, l_bound, u_bound):
+        return value >= l_bound and value <= u_bound
+
+example query:
+
+SELECT b.title as twentieth_century_books
+FROM books b
+WHERE b.year BETWEEN 1900 AND 2000;
+
+>>> | twentieth_century_books | --> 1. The Great Gatsby (1925) 2. Big Fish (1998) 
