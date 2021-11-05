@@ -1,3 +1,0 @@
-my attempt:
- For each customer, list the customer_id and the order_date of their first order. Sort by customer_id.
-SELECT customer_id, order_date FROM orders 

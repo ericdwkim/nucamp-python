@@ -32,8 +32,9 @@ VALUES ('Pacific');
 INSERT INTO divisions (name)
 VALUES ('Central');
 
-QUESTION: is there an easier way to query all (4) records?!
-ANSWER/SOLUTION: 
+-- QUESTION: is there an easier way to query all (4) records?!
+
+-- ANSWER/SOLUTION: 
 
             INSERT INTO divisions (name) VALUES 
             ('Atlantic'), ('Metropolitan'), ('Pacific'), ('Central');
@@ -45,8 +46,8 @@ VALUES ('New York', 'New York Islanders', 'Royal Blue', 'White', 2);
 INSERT INTO teams (city, name, home_color, away_color, division_id)
 VALUES ('Seattle', 'Seattle Kraken', 'Deep sea blue', 'White', 3);
 
-QUESTION: is there an easier way to query all (2) records?!
-ANSWER/SOLUTION: 
+-- QUESTION: is there an easier way to query all (2) records?!
+-- ANSWER/SOLUTION: 
 
             INSERT INTO teams (city, name, home_color, away_color, division_id) VALUES 
             ('New York', 'Islanders', 'Royal blue', 'White', 2),
