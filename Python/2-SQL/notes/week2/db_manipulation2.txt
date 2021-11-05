@@ -133,6 +133,8 @@ WHERE --> provides a way to filter result sets
     ex: SELECT title, author FROM books WHERE genre = 'Novel';
     " from the books table, grab the title and author values only for the data sets that
       have a genre value equal to string 'Novel' " 
+
+NOTE: WHERE clause must come *before* ORDER BY clause
 -------------------------------------------------------------------------------
 2. Logical Operators (AND, OR, >, >=, <>) 
         (tip: '<>' is the not-equal operator in SQL syntax aka '!=')
@@ -173,12 +175,12 @@ SELECT DISTINCT genre FROM books LIMIT 1;
     - evalutes as TRUE if column's value is b/w the U/L bounds
     - bounds are *inclusive*, that is, a column_value = upper OR lower bound will
       evaluate as TRUE
-
+    ------------------------
 python fn equivalent:
 
     def BETWEEN(value, l_bound, u_bound):
         return value >= l_bound and value <= u_bound
-
+    ------------------------
 example query:
 
 SELECT b.title as twentieth_century_books
@@ -240,5 +242,43 @@ example:
 SELECT b.title, b.year FROM books b
 WHERE b.year IN (1990, 1986, 1996, 1998);
 >>> |1.  Big Fish (1998) |
+===============================================================================
+                        VII. SQL ORDER BY
+- sorts result sets
+- must come *after* WHERE clause (if present)
+- specifies columns to sort by in order of precedence
+- column_name = sort_expression
+- ascending order by default, use DESC to reverse (see example below)
+- when applied to TEXT data type column, the data will be sorted alphabetically
+        --------------------------------
+    example of ASC (default) vs. DESC to reverse:
+        SELECT * FROM books
+        ORDER BY year; 
+        >>> 1605, 1818, 1925, 1998
 
+        SELECT * FROM books
+        ORDER BY year DESC; 
+        >>> 1998, 1925, 1818, 1605
+        --------------------------------
+
+Syntax of ORDER BY:
+
+SELECT
+    select_list
+FROM
+    table_name
+ORDER BY
+    sort_expression1 [ASC | DESC],
+            ...
+    sort_expressionN [ASC | DESC];
+
+-------------------------------------------
+
+Syntax of tiebreaker case:
+
+SELECT * FROM books
+ORDER BY genre, author DESC;
+
+explanation: since there was a "tie" due to three differnt data points having the same `Novel` genre, an additional 
+ORDER BY clause was defined by having the author column in a DESC, so from Z - A
 

@@ -41,9 +41,10 @@ CREATE TABLE orders (
                         customer_id INT NOT NULL,
                         CONSTRAINT fk_customer
                             FOREIGN KEY (customer_id)
-                            REFERENCES customers(id)
+                            REFERENCES customers (id)
                             ON DELETE SET NULL
                     );
+    NOTE: REFERENCES <table_name> (column_name_to_reference)
 
 2. `SET DEFAULT` solution --> sets fk values to default values; retains records, but forces
                               them to maintain a reference  

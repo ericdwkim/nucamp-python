@@ -17,11 +17,14 @@ docker compose down
 --> completely tears down the containers; should NOT use this unless you wish to reset EVERYTHING 
 
 docker exec -it pg_container psql -U postgres
---> "give me an interactive terminal (`-it`) inside pg_container and execute psql as a default User"
+--> "give me an interactive terminal (`-it`) inside a container called 'pg_container' and execute psql as a default User"
+
 
 cat week1_script.sql | docker exec -i pg_container psql -d week1 
 --> "inside the Docker container named `pg_container`, use psql to connect to the db named `week1` and feed it `week1_script.sql` as input"
 
+NOTE: in git bash, you must prefix the docker commands w/ `winpty` as follows:
+    winpty docker exec -it pg_container psql -d week2
 ================================
             pSQL CLI
 
