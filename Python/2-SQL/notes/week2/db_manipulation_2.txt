@@ -1,0 +1,111 @@
+                    I. SQL Aggregations
+
+Aggregate Functions (5) 
+
+1. COUNT --> count of the column specified (include NULL values if * is used)
+
+Example of "count of all books": 
+
+SELECT COUNT(*) AS book_count FROM books;
+
+explanation: creates a new column titled "book_count" w/ the # of 
+all the books in the `books` table since `*` grabs all records
+-----------------------------------------------------------------
+2. MAX --> Maximum value in the column (excludes NULL values)
+
+Example of "year of the latest book":
+
+SELECT MAX (b.year) AS year_of_latest_book FROM books b;
+
+explanation: creates a new column titled "year_of_latest_book" w/ the book that has the latest (highest) value 
+for its `year` record
+
+-----------------------------------------------------------------
+
+3. MIN --> Minimum value in the column (excludes NULL values)
+
+Example of "Year of the oldest book": 
+
+SELECT MIN (b.year) AS year_of_oldest_book FROM books b;
+
+explanation: creates a new column titled "year_of_oldest_book" w/ the book that has the oldest (smallest) value 
+for its `year` record
+-----------------------------------------------------------------
+4. AVG --> Average value in the column (excludes NULL values, only works on numeric data types)
+-----------------------------------------------------------------
+
+5. SUM --> Sum of values in the column (excludes NULL values, only works on numeric data types)
+
+===================================================================================================================
+                                                DISTINCT qualifier
+
+GOOD Example of getting the number of book genres:
+
+SELECT COUNT (DISTINCT genre) AS genre_count FROM books;
+
+>> genre_count column w/ a value of '2', since only 'Novel' and 'Magical Realism' 
+-------------------------------------------------------------------------------------------------------------------------
+
+Bad Example of getting the number of book genres:
+
+SELECT COUNT (genre) AS genre_count FROM books;
+
+>> this is a BAD way to query the # of book genres, since this will only return the # of rows in the table which is 4
+even though there are only 2 *unique* genres which is a more helpful piece of data to query; using the DISTINCT keyword qualifier
+allows for better data
+
+===================================================================================================================
+                                                SQL `GROUP BY` clause
+- useful w/ aggregate Functions
+- divides rows into groups before performing an aggregation on each group
+- returns result set w/ 1 row per group
+- Syntax rules: (1) MUST come *after* FROM and WHERE clauses (2) every non-aggregate column in the SELECT list must be in the GROUP BY
+
+Syntax example:
+-------------------------------------------
+SELECT
+    column_1,
+    column_2,
+    ...,
+    aggregate_fn(column_3)
+FROM
+    table_name
+GROUP BY
+    column_1,
+    column_2,
+    ...,
+-------------------------------------------
+
+Example query:
+-------------------------------------------
+SELECT genre, COUNT (*) AS book_count
+FROM books GROUP BY genre;
+-------------------------------------------
+Example query syntax structure:
+
+SELECT <column_to_select>, <aggregate_fn (aggregate_param and/or wildcard)> AS alias_name_if_desired
+FROM <table_name> GROUP BY <column_to_select>
+-------------------------------------------
+===================================================================================================================
+                                                SQL `HAVING` filter
+- comes *after* GROUP BY clause
+- filters groups of rows
+- similar functionality to WHERE, but WHERE can only filter individual rows
+- HAVING can filter *aggregated* rows
+
+Syntax example of "count number of books per genre":
+-------------------------------------------
+
+SELECT genre, COUNT (*) AS book_count
+FROM books
+GROUP BY genre
+HAVING(COUNT(*)) > 1;
+-------------------------------------------
+                        explanation line-by-line:
+1st line: take the genre column, count the # all values in that column
+        store that # in a new column titled "book_count"
+2nd line: from the `books` table
+3rd line: divide the rows into separate groups as defined by differing genres 
+4th line (starting inner): get the # of all records in the separate groups
+4th line (finishing outer): if # of all records is > 1, it passes filter and is now the result set
+(if it doesn't pass logical operator condition aka if not > 1, then it will not be apart of the result set)

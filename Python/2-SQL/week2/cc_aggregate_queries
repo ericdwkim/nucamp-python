@@ -1,0 +1,3 @@
+my attempt:
+
+SELECT customer_id, order_date FROM orders 
