@@ -1,0 +1,59 @@
+                                    Set Operations
+
+1. UNION --> used to combine the result sets from two SELECT queries*; removes
+            duplicates, returns combined result set
+
+* NOTE: both SELECT statements being combined must have the following:
+        (a) same number of columns (b) same order of columns (c) compatible data types for corresponding columns
+
+
+syntax for UNION w/ removing duplicates:
+
+SELECT select_list_1
+FROM table_1
+UNION
+SELECT select_list_2
+FROM table_2;
+
+syntax for UNION w/o removing duplicates:
+
+SELECT select_list_1
+FROM table_1
+UNION ALL
+SELECT select_list_2
+FROM table_2;
+
+-----------------------------------------------------------------
+UNION example of querying all title, author, year 
+from amazon_best_sellers and president_books tables 
+(assuming that the president = author):
+
+SELECT title, president AS author, year FROM president_books
+UNION
+SELECT title, author, year FROM amazon_best_sellers;
+
+Note: `president` explicitly defines an alias `author` or else sql will simply
+choose `president` as the column title for the list of authors 
+-----------------------------------------------------------------
+
+2. INTERSECT --> operates on result sets of 2 queries; combines result sets on top of one another, eliminates
+                unique rows; aka only returns the duplicates
+
+syntax for INTERSECT:
+
+SELECT select_list_1
+FROM table_1
+INTERSECT
+SELECT select_list_2
+FROM table_2;
+-----------------------------------------------------------------
+3. EXCEPT --> implements set difference of two result sets; returns first result set after eliminating any
+rows matching those of second result set
+
+syntax for EXCEPT:
+
+SELECT select_list_1
+FROM table_1
+EXCEPT
+SELECT select_list_2
+FROM table_2;

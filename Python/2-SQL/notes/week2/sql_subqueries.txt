@@ -1,0 +1,90 @@
+Subqueries --> nested queries for advanced filtering
+- uses SQL logical operators: EXISTS, ANY, ALL, IN, NOT IN
+
+                        SQL Logical Operators (5):
+- used b/w WHERE clause and subquery
+- returns boolean value
+
+1. EXISTS
+        TRUE, if subquery returns at least 1 row
+        FALSE, if subquery returns 0 rows 
+
+Syntax example for EXISTS:
+
+SELECT select_list
+FROM table_name
+WHERE EXISTS (nested_query);
+
+---------------------------------------------------------------------------
+
+Syntax example for IN, NOT IN, ANY, ALL:
+- compares some value (provided by you) to subquery's result set 
+SELECT select_list
+FROM table_name
+WHERE value
+[IN | NOT IN | conditional ALL | conditional ANY ] (nested_query);
+---------------------------------------------------------------------------
+2. IN
+
+use-case example for IN: 
+
+SELECT a.author
+FROM amazon_best_sellers a
+WHERE a.author IN (
+    SELECT president FROM president_books
+);
+
+explanation: the subquery will evaluate to all the values of the president (aka author) column from president_books table;
+the outer query will then check if an author from the author column in the amazon_best_sellers table exists in the defined
+subquery, and if so, it will return the result set of that author's name
+---------------------------------------------------------------------------
+
+3. NOT IN 
+- negates result of IN operators
+
+use-case example of finding all authors in amazon_best_sellers who *do not* appear in the president_books table:
+
+SELECT a.author
+FROM amazon_best_sellers a
+WHERE a.author NOT IN (
+    SELECT president FROM president_books
+);
+
+explanation: essentially does the opposite of the IN example, where it'll return a result set of authors from amazon_best_sellers
+that do not appear in the subquery 
+---------------------------------------------------------------------------
+4. ANY
+
+- must work in conjunction w/ comparison operators: <, <=, =, !=, >, >=
+- filter initial query results based on comparison w/ subquery
+
+ANY example to "find all amazon_best_sellers titles and years for books that were published
+before at least 1 president's book":
+
+SELECT a.title, a.year
+FROM amazon_best_sellers a
+WHERE a.year < ANY (
+    SELECT b.year FROM president_books b
+);
+
+explanation: the subquery evalutes to all values from the year column within the president_books table; the outer query
+then selects both the title and year columns from the amazon_best_sellers table and iterates through all of the different
+years in the president_books table and checks if a.year < b.year (aka for books that were published before...)
+and if so, add that to the final result set
+
+
+---------------------------------------------------------------------------
+5. ALL
+
+- must work in conjunction w/ comparison operators: <, <=, =, !=, >, >=
+- filter initial query results based on comparison w/ subquery
+- checks against each value in list and returns true only if *every* check evalutes as TRUE, otherwise FALSE
+    - if TRUE, result (from initial query) is added to final result set
+
+ALL example to "find all amazon_best_sellers authors whose first names are alphabetically greater than the first
+names of every president in president_books" ("alphabetically greater" meaning further down the alphabet):
+
+SELECT a.author FROM amazon_best_sellers a
+WHERE a.author > ALL (
+    SELECT b.president FROM president_books b
+);

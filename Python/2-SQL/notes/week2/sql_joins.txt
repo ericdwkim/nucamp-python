@@ -1,0 +1,40 @@
+(4) types of JOIN: 1. INNER 2. LEFT 3. RIGHT 4. FULL
+ - INNER is psql's default if type is not defined or omitted
+
+Syntax:
+
+SELECT select_list
+FROM left_table
+[INNER | LEFT | RIGHT | FULL ] JOIN right_table
+ON left_column = right_column;
+-----------------------------------------------------------------
+0. JOIN --> query from multiple tables based on values of common columns b/w related tables;
+common columns are typically pk (of parent table) or fks (of child table)
+
+- can be perfomed on any columns
+- emphasizes the relationships b/w entities
+
+1. INNER JOIN
+    a. select rows from left_table 
+    b. compare left_column to right_column
+    c. if equal, add selected columns to result set
+    d. otherwise, skip ---> *this* is the major distinction of INNER JOIN
+
+2. LEFT JOIN (aka LEFT OUTER JOIN)
+    a. select rows from left_column
+    b. compare left_column to right_column
+    c. if equal, add selected columns to result set 
+    d. otherwise, add selected columns from left_table w/ NULL placeholders for columns in right_table
+
+3. RIGHT JOIN
+    a. select rows from right_column
+    b. compare left_column to right_column
+    c. if equal, add selected columns to result set 
+    d. otherwise, add selected columns from right_table w/ NULL placeholders for columns in left_table
+
+4. FULL JOIN
+    a. select all rows from both left_table and right_table
+    b. select columns from corresponding joined table if match found, else add NULL placeholder values
+    NOTE: this is the equivalent of performing a UNION ALL on both LEFT & RIGHT JOINs 
+
+    
