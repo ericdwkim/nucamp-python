@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="VqXjDssocNXOkfD-5iYw" name="Page-1">
-        <mxGraphModel dx="1164" dy="1798" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+        <mxGraphModel dx="2901" dy="2206" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -55,6 +55,11 @@
                 <mxCell id="103" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;endArrow=none;endFill=0;strokeWidth=5;" parent="1" source="47" target="102" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
+                <mxCell id="105" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;endArrow=none;endFill=0;strokeWidth=5;" edge="1" parent="1" source="47">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="410" y="670" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
                 <mxCell id="47" value="Album" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="500" y="455" width="120" height="60" as="geometry"/>
                 </mxCell>
@@ -99,7 +104,7 @@
                 <mxCell id="58" style="edgeStyle=none;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;startFill=0;endArrow=none;endFill=0;strokeWidth=1;" parent="1" source="59" target="70" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="84" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=5;" parent="1" source="59" target="69" edge="1">
+                <mxCell id="84" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeWidth=1;" parent="1" source="59" target="69" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="1730" y="-200"/>
@@ -108,6 +113,9 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="98" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;endArrow=none;endFill=0;strokeWidth=1;" parent="1" source="59" target="97" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="109" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endArrow=none;endFill=0;strokeWidth=5;" edge="1" parent="1" source="59" target="108">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="59" value="Artist" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -128,10 +136,10 @@
                 <mxCell id="64" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;startFill=0;endArrow=classic;endFill=1;strokeWidth=5;" parent="1" source="65" target="69" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="81" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;strokeWidth=1;" parent="1" source="65" target="80" edge="1">
+                <mxCell id="81" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;strokeWidth=5;endSize=5;" parent="1" source="65" target="80" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="83" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;endArrow=none;endFill=0;strokeWidth=1;" parent="1" source="65" target="82" edge="1">
+                <mxCell id="83" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;endArrow=none;endFill=0;strokeWidth=5;endSize=5;" parent="1" source="65" target="82" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="65" value="User Account" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -173,6 +181,9 @@
                 <mxCell id="96" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;strokeWidth=5;" parent="1" source="92" target="95" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
+                <mxCell id="107" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;strokeWidth=5;" edge="1" parent="1" source="92" target="106">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
                 <mxCell id="92" value="Group" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1170" y="290" width="120" height="60" as="geometry"/>
                 </mxCell>
@@ -196,8 +207,17 @@
                 <mxCell id="100" value="Length" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="70" y="320" width="120" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="102" value="Count of Songs" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="102" value="Number of Songs" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="710" y="660" width="120" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="104" value="&lt;b&gt;&lt;u&gt;ID&lt;/u&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="350" y="670" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="106" value="&lt;b&gt;&lt;u&gt;ID&lt;/u&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="1140" y="540" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="108" value="&lt;b&gt;&lt;u&gt;ID&lt;/u&gt;&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="1440" y="-780" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
