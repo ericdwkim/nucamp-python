@@ -35,7 +35,7 @@ CREATE TABLE accounts (
 CREATE TABLE artists (
     artist_id SERIAL,
     artist_name TEXT NOT NULL,
-    artist_bio TEXT NOT NULL,
+    artist_bio TEXT,
     PRIMARY KEY (artist_id)
 );
 
@@ -60,7 +60,10 @@ CREATE TABLE groups_artists (
 );
 -- =================== fk constraints below ================================
 
--- enforces many-to-one relation
+-- enforces many-to-one relation for songs&albums
+ALTER TABLE public.songs
+ADD COLUMN album_id INT UNIQUE;
+
 ALTER TABLE songs
 ADD CONSTRAINT fk_songs_albums
 FOREIGN KEY (album_id)
@@ -100,6 +103,9 @@ FOREIGN KEY (artist_id)
 REFERENCES artists;
 
 -- enforces one-to-one relation for accounts&artists
+ALTER TABLE public.accounts
+ADD COLUMN artist_id INT UNIQUE;
+
 ALTER TABLE accounts
 ADD CONSTRAINT fk_accounts_artists
 FOREIGN KEY (artist_id)
