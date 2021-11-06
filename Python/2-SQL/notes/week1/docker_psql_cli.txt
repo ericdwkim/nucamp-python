@@ -25,6 +25,13 @@ cat week1_script.sql | docker exec -i pg_container psql -d week1
 
 NOTE: in git bash, you must prefix the docker commands w/ `winpty` as follows:
     winpty docker exec -it pg_container psql -d week2
+
+docker ps -a
+--> lists the containers, images, and other useful info
+    CONTAINER ID, IMAGE, COMMAND, CREATED, STATUS, PORTS, NAMES
+
+docker rm <HASH>
+--> removes the provided HASH related to the CONTAINER ID; aka removes the container 
 ================================
             pSQL CLI
 
