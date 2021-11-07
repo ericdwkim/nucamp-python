@@ -91,16 +91,17 @@ FROM orders
 GROUP BY ship_address
 ORDER BY most_ordered_addrs DESC;
 
-2.4
-Who could we offer our new freight discount campaign to?
-For each customer, select customer_id and the total amount spent on freight
-across all of their orders. Only include those who have spent more than $500.
-Sort by customer_id.
+-- 2.4
+-- Who could we offer our new freight discount campaign to?
+-- For each customer, select customer_id and the total amount spent on freight
+-- across all of their orders. Only include those who have spent more than $500.
+-- Sort by customer_id.
 
 SELECT DISTINCT customer_id, SUM(freight)
 AS tot_amt_freight
 FROM orders
-GROUP BY customer_id; -- just need add `HAVING (COUNT(*)) > 500` or something like that
+GROUP BY customer_id
+HAVING(SUM(freight) > 500);
 
 2.5
 We want to offer white glove shipping to our best customers.
@@ -111,6 +112,41 @@ Then, select the average of those counts.
 
 Hint: ship_via is a foreign key on orders that references shippers.
 
+SELECT DISTINCT o.customer_id, o.ship_via
+FROM orders o
+INNER JOIN shippers s
+ON o.ship_via = s.shipper_id
+ORDER BY customer_id;
+
+
+
+-- SELECT customer_id, COUNT(ship_via)
+-- AS shippers
+-- FROM orders
+-- GROUP BY customer_id, ship_via
+-- ORDER BY customer_id;
+
+
+-- SELECT DISTINCT o.customer_id, o.ship_via
+-- FROM orders o
+-- INNER JOIN shippers s
+-- ON o.ship_via = s.shipper_id
+-- GROUP BY o.customer_id, o.ship_via
+-- ORDER BY customer_id;
+
+
+
+
+
+-- SELECT DISTINCT o.customer_id, o.ship_via,
+-- COUNT(o.ship_via) AS num_shippers
+-- FROM orders o
+-- INNER JOIN shippers s
+-- ON o.ship_via = s.shipper_id
+-- GROUP BY customer_id, ship_via
+-- ORDER BY customer_id;
+
+-- WITH cte_shippers AS (
 
 
 Part 3: Mix and Match

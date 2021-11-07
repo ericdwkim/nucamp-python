@@ -90,7 +90,7 @@ FROM <table_name> GROUP BY <column_to_select>
                                                 SQL `HAVING` filter
 - comes *after* GROUP BY clause
 - filters groups of rows
-- similar functionality to WHERE, but WHERE can only filter individual rows
+- similar functionality to WHERE, but WHERE can only filter *individual* rows
 - HAVING can filter *aggregated* rows
 
 Syntax example of "count number of books per genre":
@@ -109,3 +109,10 @@ HAVING(COUNT(*)) > 1;
 4th line (starting inner): get the # of all records in the separate groups
 4th line (finishing outer): if # of all records is > 1, it passes filter and is now the result set
 (if it doesn't pass logical operator condition aka if not > 1, then it will not be apart of the result set)
+
+---------------------
+
+additional notes on HAVING:
+
+- since HAVING clause is evaluated before the SELECT clause, 
+  you cannot use column aliases in the HAVING clause
