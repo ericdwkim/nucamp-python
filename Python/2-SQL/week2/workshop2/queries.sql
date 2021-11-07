@@ -103,21 +103,24 @@ FROM orders
 GROUP BY customer_id
 HAVING(SUM(freight) > 500);
 
-2.5
-We want to offer white glove shipping to our best customers.
-But first, do we need to consolidate the shippers we use? How many different
-shippers do our customers normally deal with?
-For each customer, count how many shippers have ever sent them an order.
-Then, select the average of those counts.
+-- 2.5
+-- We want to offer white glove shipping to our best customers.
+-- But first, do we need to consolidate the shippers we use? How many different
+-- shippers do our customers normally deal with?
+-- For each customer, count how many shippers have ever sent them an order.
+-- Then, select the average of those counts.
 
-Hint: ship_via is a foreign key on orders that references shippers.
+-- Hint: ship_via is a foreign key on orders that references shippers.
 
-SELECT DISTINCT o.customer_id, o.ship_via
-FROM orders o
-INNER JOIN shippers s
-ON o.ship_via = s.shipper_id
-ORDER BY customer_id;
+WITH cust_num_shipping_companies AS (
+	SELECT customer_id, 
+	COUNT(DISTINCT ship_via)
+	AS num_shippers
+	FROM orders
+	GROUP BY customer_id
+)
 
+SELECT TRUNC(AVG(num_shippers), 3) from cust_num_shipping_companies;
 
 
 -- SELECT customer_id, COUNT(ship_via)
