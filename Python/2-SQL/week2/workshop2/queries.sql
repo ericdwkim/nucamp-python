@@ -123,44 +123,21 @@ WITH cust_num_shipping_companies AS (
 SELECT TRUNC(AVG(num_shippers), 3) from cust_num_shipping_companies;
 
 
--- SELECT customer_id, COUNT(ship_via)
--- AS shippers
--- FROM orders
--- GROUP BY customer_id, ship_via
--- ORDER BY customer_id;
+-- Part 3: Mix and Match
 
+-- 3.1
+-- Let's review our product categories.
+-- List each product_name and its corresponding category_name.
+-- Do not include products that have a null category_id
+-- Sort by product_id.
 
--- SELECT DISTINCT o.customer_id, o.ship_via
--- FROM orders o
--- INNER JOIN shippers s
--- ON o.ship_via = s.shipper_id
--- GROUP BY o.customer_id, o.ship_via
--- ORDER BY customer_id;
+-- Hint: check which join type you should use in this situation
 
-
-
-
-
--- SELECT DISTINCT o.customer_id, o.ship_via,
--- COUNT(o.ship_via) AS num_shippers
--- FROM orders o
--- INNER JOIN shippers s
--- ON o.ship_via = s.shipper_id
--- GROUP BY customer_id, ship_via
--- ORDER BY customer_id;
-
--- WITH cte_shippers AS (
-
-
-Part 3: Mix and Match
-
-3.1
-Let's review our product categories.
-List each product_name and its corresponding category_name.
-Do not include products that have a null category_id
-Sort by product_id.
-
-Hint: check which join type you should use in this situation
+SELECT p.product_name, c.category_name
+FROM products p
+INNER JOIN categories c
+ON p.category_id = c.category_id
+ORDER BY product_id;
 
 
 3.2
@@ -176,6 +153,14 @@ one query by listing each after the other.
 Try an inner join on employees -> employee_territories -> territories -> region
 
 
+SELECT r.region_description, t.territory_description, e.last_name, e.first_name
+FROM employees e
+JOIN employee_territories et ON e.employee_id = et.employee_id
+JOIN territories t ON et.territory_id = t.territory_id
+JOIN region r ON r.region_id = t.region_id
+ORDER BY r.region_description, t.territory_description, e.last_name, e.first_name;
+
+TODO: remove duplicates for ex: 13 + 14 
 3.3
 Finance wants to audit the sales tax rates we've applied so need a list of
 each customer in the different states.
