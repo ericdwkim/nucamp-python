@@ -153,47 +153,73 @@ one query by listing each after the other.
 Try an inner join on employees -> employee_territories -> territories -> region
 
 
-SELECT r.region_description, t.territory_description, e.last_name, e.first_name
+SELECT DISTINCT r.region_description, t.territory_description, e.last_name, e.first_name
 FROM employees e
 JOIN employee_territories et ON e.employee_id = et.employee_id
 JOIN territories t ON et.territory_id = t.territory_id
 JOIN region r ON r.region_id = t.region_id
 ORDER BY r.region_description, t.territory_description, e.last_name, e.first_name;
 
-TODO: remove duplicates for ex: 13 + 14 
-3.3
-Finance wants to audit the sales tax rates we've applied so need a list of
-each customer in the different states.
-List state_name, state_abbr, and company_name for all customers in the U.S. states
-If a state has no customers, still include it in the result with a NULL
-placeholder for the company_name.
-Sort by state_name.
 
-Hint: match the customer's region on the state's abbreviation
+-- 3.3
+-- Finance wants to audit the sales tax rates we've applied so need a list of
+-- each customer in the different states.
+-- List state_name, state_abbr, and company_name for all customers in the U.S. states
+-- If a state has no customers, still include it in the result with a NULL
+-- placeholder for the company_name.
+-- Sort by state_name.
+
+-- Hint: match the customer's region on the state's abbreviation
+
+SELECT us.state_name, us.state_abbr, c.company_name
+FROM us_states us
+RIGHT JOIN customers c
+ON c.region = us.state_abbr
+WHERE c.country = 'USA'
+ORDER BY state_name;
+
+-- 3.4
+-- Time for the yearly bonus! and associated thank you email.
+-- To generate the email salutations, query the following:
+
+-- List territory_description, employee title_of_courtesy, and employee last_name for all
+-- territories and any assigned employees.
+-- If a territory has no employees assigned, list its description with
+-- NULL filled in for the relevant employee fields.
+-- Sort first by territory_description, then employee_id.
+
+SELECT t.territory_description, e.title_of_courtesy, e.last_name
+FROM employees e
+JOIN employee_territories et ON e.employee_id = et.employee_id
+JOIN territories t ON et.territory_id = t.territory_id
+ORDER BY t.territory_description, e.employee_id;
+
+-- 3.5
+-- Management needs a list of all suppliers and customers contact information 
+-- for the holiday greeting cards!
+-- Select company_name, address, city, region, postal_code, and country 
+-- for all suppliers and all customers.
+-- Sort by company_name.
 
 
-3.4
-Time for the yearly bonus! and associated thank you email.
-To generate the email salutations, query the following:
+SELECT s.company_name, s.address, s.city, s.region, s.postal_code, s.country
+FROM suppliers s
+UNION
+SELECT c.company_name, c.address, c.city, c.region, c.postal_code, c.country 
+FROM customers c
+ORDER BY company_name;
 
-List territory_description, employee title_of_courtesy, and employee last_name for all
-territories and any assigned employees.
-If a territory has no employees assigned, list its description with
-NULL filled in for the relevant employee fields.
-Sort first by territory_description, then employee_id.
-
-
-3.5
-Management needs a list of all suppliers and customers contact information 
-for the holiday greeting cards!
-Select company_name, address, city, region, postal_code, and country 
-for all suppliers and all customers.
-Sort by company_name.
+-- 3.6
+-- And of course, our famous holiday gift baskets go out to our best customers.
+-- Get customer company_name and the total quantity of products ever ordered by
+-- said customer. Only select those that have ordered a total quantity of at
+-- least 500.
+-- Sort by total quantity in descending order.
 
 
-3.6
-And of course, our famous holiday gift baskets go out to our best customers.
-Get customer company_name and the total quantity of products ever ordered by
-said customer. Only select those that have ordered a total quantity of at
-least 500.
-Sort by total quantity in descending order.
+SELECT c.company_name, SUM(od.quantity) AS tot_quantity
+FROM customers c
+JOIN orders o ON c.customer_id = o.customer_id
+JOIN order_details od ON o.order_id = od.order_id
+GROUP BY c.company_name HAVING(SUM(od.quantity)) >= 500
+ORDER BY tot_quantity DESC;
