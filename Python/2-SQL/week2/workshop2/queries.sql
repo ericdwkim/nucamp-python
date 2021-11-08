@@ -140,17 +140,17 @@ ON p.category_id = c.category_id
 ORDER BY product_id;
 
 
-3.2
-HR wants to do a staff audit across the regions.
-List region_description, territory_description, employee last_name,
-and employee first_name for each territory and region an employee works in.
+-- 3.2
+-- HR wants to do a staff audit across the regions.
+-- List region_description, territory_description, employee last_name,
+-- and employee first_name for each territory and region an employee works in.
 
-To make it easier for them, remove duplicate results and also sort first by
-region_description, then territory description, then last name, and finally first name.
+-- To make it easier for them, remove duplicate results and also sort first by
+-- region_description, then territory description, then last name, and finally first name.
 
-Hint: joins can only take two tables at a time, but you use multiple joins in
-one query by listing each after the other.
-Try an inner join on employees -> employee_territories -> territories -> region
+-- Hint: joins can only take two tables at a time, but you use multiple joins in
+-- one query by listing each after the other.
+-- Try an inner join on employees -> employee_territories -> territories -> region
 
 
 SELECT DISTINCT r.region_description, t.territory_description, e.last_name, e.first_name

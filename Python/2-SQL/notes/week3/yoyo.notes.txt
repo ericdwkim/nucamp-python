@@ -1,0 +1,25 @@
+                    yoyo commands
+
+yoyo new -->  creates a new SQL file for our migration query; creates a new forward migration used to add columns to tables
+
+yoyo apply  --> executes our forward migration SQL
+
+    yoyo apply -r <migration_file_id> 
+
+yoyo rollback  --> executes our rollback SQL; by default only rollbacks the last applied migration only
+
+    yoyo rollback --all --> rolls back *all* applied migrations 
+
+yoyo list  --> prints the status of all migrations
+            - "U" status = unapplied migrations
+            - "A" status = applied migrations
+
+~/code/nucamp-python/python/2-sql/week3/yoyo 
+    
+    yoyo new --sql -m "some string message"
+    --> "--sql" = use SQL instead of python
+    --> "-m" = add a short message to the file
+=======================================================================================
+- yoyo knows where to find and create migration files based on the yoyo.ini config file
+located in week3/yoyo/yoyo.ini folder path
+    - this ini file specifies the db yoyo should connect to
