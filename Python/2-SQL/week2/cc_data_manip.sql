@@ -54,11 +54,11 @@ VALUES ('Seattle', 'Seattle Kraken', 'Deep sea blue', 'White', 3);
             ('Seattle', 'Kraken', 'Deep sea blue', 'White', 3);
 
 --------------------------------------------------------------------------------------------------------
-
+                            Updating records
 UPDATE divisions
 SET name = 'Cosmopolitan'
 WHERE name = 'Metropolitan';
 --------------------------
-
+                            Deleting records
 DELETE FROM divisions
 WHERE name = 'Cosmopolitan';
