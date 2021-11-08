@@ -79,7 +79,7 @@ CREATE TABLE expertise_categories_employees (
     employee_id INT NOT NULL,
     PRIMARY KEY (expertise_category_id, employee_id)
 );
-
+-- need to fix this query
 INSERT INTO expertise_categories_employees (employee_id)
 VALUES (
     SELECT e.employee_id
