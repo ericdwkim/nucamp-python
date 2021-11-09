@@ -13,11 +13,12 @@ such as Python or Java running on Node.js
 
 4. Object-relational mapping --> translates object-oriented code into SQL
 
-----------------------------------------------------
+-------------------------------------------------------------------------------------------
+                                    ORM vs. Raw SQL
 
 How are the queries executed from backend? 
 - via "database adapters" aka db drivers; db connectors
-----------------------------------------------------
+
 
 Example A Syntax - querying for a user's full name and email w/ Raw SQL:
 
