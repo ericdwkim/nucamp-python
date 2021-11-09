@@ -1,0 +1,56 @@
+
+                            Terminology
+Object-Relational Mapping (ORM) --> a technique for performing SQL queries from a backend, 
+such as Python or Java running on Node.js
+
+1. Object --> grouping of related data fields and methods;
+            eg: similar to how a Python class works
+
+2. Relational --> refers to Relational Database; eg: Postgres, MySQL
+
+3. Mapping -- translation from one domain to another; 
+            eg: similar to how a Python dictionary; each key maps to a single value
+
+4. Object-relational mapping --> translates object-oriented code into SQL
+
+----------------------------------------------------
+
+How are the queries executed from backend? 
+- via "database adapters" aka db drivers; db connectors
+----------------------------------------------------
+
+Example A Syntax - querying for a user's full name and email w/ Raw SQL:
+
+db = get_database() # assuming this returns a db adapter 
+sql = "SELECT id, first_name, last_name FROM users WHERE id = 5";
+result = db.execute(sql)
+
+users = list(result) # using python's built-in list() fn 
+user5 = users[0] # returns the 1st indexed values from list of `users
+
+first_name = user5["first_name"]
+last_name = user5["last_name"]
+
+full_name = first_name + " " + last_name
+email = user5["email"]
+
+print(full_name, email)
+----------------------------------------------------
+Example B Syntax - querying for a user's full name and email w/ ORM:
+
+db = get_database() # assuming this returns a db adapter 
+
+# user5 as a User object
+# Users property which provides an interface to an actual users table
+# the table interface contains a `get()` which takes in a pk as a param
+# the user5 object is now mapped to the specific *row* of the users table
+# whereas the Users object maps to the *entire* users table
+user5 = db.Users.get(5) 
+
+# get full_name is a method on the User object 
+full_name = user5.get_full_name()
+
+# email is a field on the User object
+email = user5.email 
+
+print(full_name, email)
