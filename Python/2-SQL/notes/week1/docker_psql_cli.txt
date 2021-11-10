@@ -17,7 +17,7 @@ docker compose down
 --> completely tears down the containers; should NOT use this unless you wish to reset EVERYTHING 
 
 docker exec -it pg_container psql -U postgres
---> "give me an interactive terminal (`-it`) inside a container called 'pg_container' and execute psql as a default User"
+--> "give me an interactive terminal (`-it`) inside a container called 'pg_container' and execute psql as a default User for the db named 'postgres' "
 
 
 cat week1_script.sql | docker exec -i pg_container psql -d week1 
@@ -39,8 +39,8 @@ postgres=# \?
 --> prints out a list of psql commands
 tips: use spacebar to view next page; use enter to advance to the next line
 
-postgres=# \c <db_name>
---> connects to the db 
+postgres=# \c db_name
+--> connects to db_name
 
 postgres=# \dt
 --> shows data tables w/in connected db (if any)
@@ -53,3 +53,22 @@ postgres=# \l
 
 postgres=# \d <table_name>
 --> describe table
+====================================================================================
+
+Use case example of using psql to check database "twitter" 's tables:
+
+1. $ docker exec -it pg_container psql
+"give me an interactive terminal inside 'pg_container'; 
+execute psql as user 'postgres' for the db named 'twitter' "
+
+2. postgres=$ \c twitter
+"(while inside the interactive psql terminal), connect to the db named 'twitter' "
+
+3. twitter=# \dt
+"(while inside the interactive psql terminal that is now connected to a db named 'twitter') 
+show or 'describe' me the tables within this db" 
+
+
+4. twitter=# \q 
+"quit the interactive psql terminal"; remains connection to db though
+
