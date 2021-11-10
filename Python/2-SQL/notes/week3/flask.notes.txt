@@ -1,0 +1,4 @@
+week3/flask dir:
+. ../../venv/Scripts/activate 
+
+SQLAlchemy --> a Python ORM tool (compatible w/ Flask) 
