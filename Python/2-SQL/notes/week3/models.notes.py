@@ -68,3 +68,23 @@ class Tweet(db.Model):
         lazy='subquery',
         backref=db.backref('liked_tweets', lazy=True)
     )
+
+    # constructor for Tweet object; omits id and created_at columns as they auto-increment
+    # and default to the current timestamp, respectively
+
+    def __init__(self, content: str, user_id: int):
+        self.content = content
+        self.user_id = user_id
+
+    # serialize method; NOTE: to "serialize" emans to prepare it for transmission
+    # in this case, we are preparing to transmit the Tweet object (w/ content and user_id params)
+    # as a JSON string over HTTP
+    # below is the Tweet object serialized as a python dictionary (w/ key-value pairs)
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'content': self.content,
+            'created_at': self.created_at.isoformat(),  # isoformat is YYYY-MM-DD
+            'user_id': self.user_id
+        }

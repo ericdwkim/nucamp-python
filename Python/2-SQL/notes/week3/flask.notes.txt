@@ -28,3 +28,27 @@ Flask-Migrate --> a package that helps w/ integrating Alembic and Flask
 back reference (`backref`)
 - for ex: our twitter backend app will need to be able to get all of the Tweets for a given User
 as well as all of the Likes for a given Tweets
+---------------------------
+
+Exercise Part 3 Breakdown:
+
+0. Setting up a three-tier architecture for the Twitter clone
+        
+        Client <---> Server <--> DB 
+        (Insomnia Client) <--> Flask (web server) <--> Injected Twitter DB
+
+1. Seed twitter DB w/ provided db
+
+2. Set up endpoints (via Flask Blueprints); start local Flask web server to serve endpoints
+
+3. import Requests Collection to test endpoints w/ HTTP requests from frontend (via Insomnia client)
+
+---
+
+Exercise Part 4 Breakdown:
+
+TL;DR: created (4) API endpoints for tweets(.py) collection
+===========================================================================================
+                                        Python notes 
+1. decorators '@' --> a fn that takes in another fn as a param and returns another fn to
+provide functionality 

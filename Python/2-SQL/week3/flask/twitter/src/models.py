@@ -54,3 +54,15 @@ class Tweet(db.Model):
         lazy='subquery',
         backref=db.backref('liked_tweets', lazy=True)
     )
+
+    def __init__(self, content: str, user_id: int):
+        self.content = content
+        self.user_id = user_id
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'content': self.content,
+            'created_at': self.created_at.isoformat(),
+            'user_id': self.user_id
+        }

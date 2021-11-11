@@ -1,0 +1,4 @@
+format json string from long single line to code blocks using the following hotkey:
+
+alt + shift + F 
+
