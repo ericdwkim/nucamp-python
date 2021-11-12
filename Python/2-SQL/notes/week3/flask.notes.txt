@@ -7,6 +7,11 @@ commands:
 -add model code -
 5. `flask db migrate` --> generates a migration file (based on new class created)
 6. `flask db upgrade` --> applies the migration
+-------------------------------------------------------------------------------
+~ week3/flask/twitter 
+. ../../../venv/Scripts/activate
+export FLASK_ENV=development
+flask run 
 ----------------------------------------------------------------------------------
                             Tools, Packages, and more
 
