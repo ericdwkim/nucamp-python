@@ -77,27 +77,14 @@ def update(id: int):
         # something went wrong :(
         return jsonify(False)
 
-# users who liked a specific tweet
-
-
-@bp.route('/<int:id>/liked_tweets', methods=['GET'])
-def liking_users(id: int):
-    lu = User.query.get_or_404(id)
-    result = []
-    for t in lu.tweets:
-        result.append(t.serialize())
-    return jsonify(result)
 
 # tweets liked by a specific user
-# 1. keep track of specific user via id
-# 2. keep track of list of tweets via tweet_id
 
 
 @bp.route('/<int:id>/liked_tweets', methods=['GET'])
 def liked_tweets(id: int):
-    # fetch user with specific id
-    u = User.query.get_or_404(id)
+    lt = User.query.get_or_404(id)
     result = []
-    for t in u.liked_tweets:
+    for t in lt.liked_tweets:
         result.append(t.serialize())
     return jsonify(result)
