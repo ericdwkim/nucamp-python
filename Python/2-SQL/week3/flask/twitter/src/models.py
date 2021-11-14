@@ -21,10 +21,14 @@ class User(db.Model):
         self.password = password
 
     def serialize(self):
+        # print(self.tweets) # [<Tweet 86>, <Tweet 90>]
+        tweets_list = []
+        for tweet in self.tweets:
+            tweets_list.append(tweet.serialize())
         return {
             'id': self.id,
             'username': self.username,
-            'tweets': self.tweets
+            'tweets': tweets_list
         }
 
 
