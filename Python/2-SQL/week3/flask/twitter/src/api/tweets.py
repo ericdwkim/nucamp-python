@@ -50,7 +50,7 @@ def delete(id: int):
 # users who liked a specific tweet
 
 
-@bp.route('/<int:id>/liked_tweets', methods=['GET'])
+@bp.route('/<int:id>/liking_users', methods=['GET'])
 def liking_users(id: int):
     lu = Tweet.query.get_or_404(id)
     result = []
