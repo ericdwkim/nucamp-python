@@ -88,3 +88,7 @@ def liking_users(id: int):
     for tweet in liked_tweets.tweets:
         result.append(tweet.serialize())
     return jsonify(result)
+
+# @bp.route('/<int:id>/liked_tweets', methods=['GET'])
+# def liked_tweets(id: int):
+#     liked_tweets = User.query.get_or_404(id)
