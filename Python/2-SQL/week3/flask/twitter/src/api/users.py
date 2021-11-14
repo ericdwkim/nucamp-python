@@ -77,18 +77,27 @@ def update(id: int):
         # something went wrong :(
         return jsonify(False)
 
+# users who liked a specific tweet
 
-# docker exec -it pg_container psql -U postgres -d twitter -c
-# 'SELECT l.user_id, u.username FROM likes l JOIN users u
-# ON l.user_id = u.id WHERE l.tweet_id = 50;'
+
 @bp.route('/<int:id>/liked_tweets', methods=['GET'])
 def liking_users(id: int):
-    liked_tweets = User.query.get_or_404(id)
+    lu = User.query.get_or_404(id)
     result = []
-    for tweet in liked_tweets.tweets:
-        result.append(tweet.serialize())
+    for t in lu.tweets:
+        result.append(t.serialize())
     return jsonify(result)
 
-# @bp.route('/<int:id>/liked_tweets', methods=['GET'])
-# def liked_tweets(id: int):
-#     liked_tweets = User.query.get_or_404(id)
+# tweets liked by a specific user
+# 1. keep track of specific user via id
+# 2. keep track of list of tweets via tweet_id
+
+
+@bp.route('/<int:id>/liked_tweets', methods=['GET'])
+def liked_tweets(id: int):
+    # fetch user with specific id
+    u = User.query.get_or_404(id)
+    result = []
+    for t in u.liked_tweets:
+        result.append(t.serialize())
+    return jsonify(result)

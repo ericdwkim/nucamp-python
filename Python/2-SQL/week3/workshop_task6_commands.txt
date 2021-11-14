@@ -1,0 +1,5 @@
+//integrated terminal
+$ docker exec -it pg_container psql -U postgres -d twitter -c 'SELECT l.user_id, u.username FROM likes l JOIN users u ON l.user_id = u.id WHERE l.tweet_id = 50;'
+
+//bash terminal 
+$ winpty docker exec -it pg_container psql -U postgres -d twitter -c 'SELECT l.user_id, u.username FROM likes l JOIN users u ON l.user_id = u.id WHERE l.tweet_id = 50;'
