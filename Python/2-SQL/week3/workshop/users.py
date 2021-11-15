@@ -1,10 +1,8 @@
 from flask import Blueprint, jsonify, abort, request
-import sqlalchemy
 from sqlalchemy.sql.functions import char_length
-from ..models import Tweet, User, db, likes_table
+from ..models import Tweet, User, db
 import hashlib
 import secrets
-from sqlalchemy import insert
 
 
 def scramble(password: str):
@@ -90,33 +88,3 @@ def liked_tweets(id: int):
     for t in lt.liked_tweets:
         result.append(t.serialize())
     return jsonify(result)
-
-
-@bp.route('/<int:id>/likes', methods=['POST'])
-def like_a_tweet(id: int):
-    if 'tweet_id' not in request.json:
-        return abort(400)
-    tweet_id = request.json['tweet_id']
-    User.query.get_or_404(id)
-    Tweet.query.get_or_404(tweet_id)
-    try:
-        stmt = insert(likes_table).values(user_id=id, tweet_id=tweet_id)
-        db.session.execute(stmt)
-        db.session.commit()
-        return jsonify(True)
-    except:
-        return jsonify(False)
-
-
-@bp.route('/<int:user_id>/likes/<int:tweet_id>', methods=['DELETE'])
-def unlike_a_tweet(user_id: int, tweet_id: int):
-    User.query.get_or_404(user_id)
-    Tweet.query.get_or_404(tweet_id)
-    try:
-        stmt = sqlalchemy.delete(likes_table).where(
-            likes_table.c.user_id == user_id, likes_table.c.tweet_id == tweet_id)
-        db.session.execute(stmt)
-        db.session.commit()
-        return jsonify(True)
-    except:
-        return jsonify(False)
