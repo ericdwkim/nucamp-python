@@ -1,0 +1,15 @@
+                                math functions & operators
+
+Pure function --> same input awlways returns same output; no side effects aka no external impact
+- read only access to the db 
+- cannot change the state of the db on their own
+
+Impure function --> may return different output given same input 
+
+ex: NOW()
+
+------------------------------------------------------------------------------------------------------
+
+                                    Triggers
+- executed before/after INSERT, UPDATE, DELETE, or TRUNCATE
+- execute once per modified row, or once per SQL stmt
