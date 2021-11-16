@@ -29,10 +29,10 @@ class Song(db.Model):
 class Album(db.Model):
     __tablename__ = 'albums'
     album_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    album_title = db.Column(db.String(128), nullable=False)
+    album_title = db.Column(db.String(), nullable=False)
     album_length = db.Column(db.Integer, nullable=False)
-    artwork_url = db.Column(db.String(280), nullable=False)
-    num_of_songs = db.Column(db.Integer(2), nullable=False)
+    artwork_url = db.Column(db.String(), nullable=False)
+    num_of_songs = db.Column(db.Integer(), nullable=False)
     release_date = db.Column(db.DateTime, nullable=False)
 
     def __init__(self, album_title: str, album_length: int, artwork_url: str, num_of_songs: int, release_date: datetime.datetime):
@@ -48,7 +48,7 @@ class Album(db.Model):
 class Group(db.Model):
     __tablename__ = 'groups'
     group_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    group_name = db.Column(db.String(128), nullable=False)
+    group_name = db.Column(db.String(), nullable=False)
 
     def __init__(self, group_name: str):
         self.group_name = group_name
@@ -73,8 +73,8 @@ class Account(db.Model):
 class Artist(db.Model):
     __tablename__ = 'artists'
     artist_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    artist_name = db.Column(db.String(128), nullable=False)
-    artist_bio = db.Column(db.String(500))
+    artist_name = db.Column(db.String(), nullable=False)
+    artist_bio = db.Column(db.String())
 
     def __init__(self, artist_name: str, artist_bio: str):
         self.artist_name = artist_name
