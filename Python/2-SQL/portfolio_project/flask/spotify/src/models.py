@@ -41,3 +41,43 @@ class Album(db.Model):
         self.artwork_url = artwork_url
         self.num_of_songs = num_of_songs
         self.release_date = release_date
+
+    # TODO: serialize() ?
+
+
+class Group(db.Model):
+    __tablename__ = 'groups'
+    group_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    group_name = db.Column(db.String(128), nullable=False)
+
+    def __init__(self, group_name: str):
+        self.group_name = group_name
+
+        # TODO: serialize() ?
+
+
+class Account(db.Model):
+    __tablename__ = 'accounts'
+    account_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    username = db.Column(db.String(128), unique=True, nullable=False)
+    user_email = db.Column(db.String(128), unique=True, nullable=False)
+    user_password = db.Column(db.String(128), nullable=False)
+
+    def __init__(self, username: str, user_email: str):
+        self.username = username
+        self.user_email = user_email
+
+        # TODO: serialize() ?
+
+
+class Artist(db.Model):
+    __tablename__ = 'artists'
+    artist_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    artist_name = db.Column(db.String(128), nullable=False)
+    artist_bio = db.Column(db.String(500))
+
+    def __init__(self, artist_name: str, artist_bio: str):
+        self.artist_name = artist_name
+        self.artist_bio = artist_bio
+
+        # TODO: serialize() ?
