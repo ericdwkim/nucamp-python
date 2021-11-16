@@ -1,10 +1,8 @@
 from flask import Blueprint, jsonify, abort, request
-import sqlalchemy
 from sqlalchemy.sql.functions import char_length
-from ..models import Tweet, User, db, likes_table
+from ..models import Tweet, User, db
 import hashlib
 import secrets
-from sqlalchemy import insert
 
 
 def scramble(password: str):
@@ -67,18 +65,12 @@ def update(id: int):
     u = User.query.get_or_404(id)
     try:
         # prevents edge case where user could create() then update()
-        # if len(request.json['username']) < 3 or len(request.json['password']) < 8:
-        #     return abort(400)
+        if len(request.json['username']) < 3 or len(request.json['password']) < 8:
+            return abort(400)
         if 'username' in request.json:
-            if len(request.json['username']) > 3:
-                u.username = request.json['username']
-            else:
-                return abort(400)
+            u.username = request.json['username']
         if 'password' in request.json:
-            if len(request.json['password']) > 8:
-                u.password = scramble(request.json['password'])
-            else:
-                return abort(400)
+            u.password = scramble(request.json['password'])
         db.session.commit()
         return jsonify(True)
     except:
@@ -96,33 +88,3 @@ def liked_tweets(id: int):
     for t in lt.liked_tweets:
         result.append(t.serialize())
     return jsonify(result)
-
-
-@bp.route('/<int:id>/likes', methods=['POST'])
-def like_a_tweet(id: int):
-    if 'tweet_id' not in request.json:
-        return abort(400)
-    tweet_id = request.json['tweet_id']
-    User.query.get_or_404(id)
-    Tweet.query.get_or_404(tweet_id)
-    try:
-        stmt = insert(likes_table).values(user_id=id, tweet_id=tweet_id)
-        db.session.execute(stmt)
-        db.session.commit()
-        return jsonify(True)
-    except:
-        return jsonify(False)
-
-
-@bp.route('/<int:user_id>/likes/<int:tweet_id>', methods=['DELETE'])
-def unlike_a_tweet(user_id: int, tweet_id: int):
-    User.query.get_or_404(user_id)
-    Tweet.query.get_or_404(tweet_id)
-    try:
-        stmt = sqlalchemy.delete(likes_table).where(
-            likes_table.c.user_id == user_id, likes_table.c.tweet_id == tweet_id)
-        db.session.execute(stmt)
-        db.session.commit()
-        return jsonify(True)
-    except:
-        return jsonify(False)
