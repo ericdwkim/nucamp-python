@@ -1,0 +1,3 @@
+// portfolio_project/flask
+docker exec -i pg_container psql -c 'CREATE DATABASE spotify;'
+
