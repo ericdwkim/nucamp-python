@@ -4,6 +4,16 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+# Song to Artist (many-many relationship helper table)
+
+
+songs_artists = db.Table('songs_artists',
+                         db.Column('song_id', db.Integer,
+                                   db.ForeignKey('song.song_id')),
+                         db.Column('artist_id', db.Integer,
+                                   db.ForeignKey('artist.artist_id'))
+                         )
+
 
 class Song(db.Model):
     __tablename__ = 'songs'
@@ -32,7 +42,7 @@ class Album(db.Model):
     album_title = db.Column(db.String(128), nullable=False)
     album_length = db.Column(db.Integer, nullable=False)
     artwork_url = db.Column(db.String(280), nullable=False)
-    num_of_songs = db.Column(db.Integer(2), nullable=False)
+    num_of_songs = db.Column(db.Integer, nullable=False)
     release_date = db.Column(db.DateTime, nullable=False)
 
     def __init__(self, album_title: str, album_length: int, artwork_url: str, num_of_songs: int, release_date: datetime.datetime):
@@ -59,9 +69,9 @@ class Group(db.Model):
 class Account(db.Model):
     __tablename__ = 'accounts'
     account_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    username = db.Column(db.String(128), unique=True, nullable=False)
-    user_email = db.Column(db.String(128), unique=True, nullable=False)
-    user_password = db.Column(db.String(128), nullable=False)
+    username = db.Column(db.String(255), unique=True, nullable=False)
+    user_email = db.Column(db.String(255), unique=True, nullable=False)
+    user_password = db.Column(db.String(255), nullable=False)
 
     def __init__(self, username: str, user_email: str):
         self.username = username
@@ -75,6 +85,9 @@ class Artist(db.Model):
     artist_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     artist_name = db.Column(db.String(128), nullable=False)
     artist_bio = db.Column(db.String(500))
+
+    artist_songs = db.relationship(
+        'Song', secondary=songs_artists, backref=db.backref('writers', lazy='dynamnic'))
 
     def __init__(self, artist_name: str, artist_bio: str):
         self.artist_name = artist_name
