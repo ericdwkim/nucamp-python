@@ -65,12 +65,18 @@ def update(id: int):
     u = User.query.get_or_404(id)
     try:
         # prevents edge case where user could create() then update()
-        if len(request.json['username']) < 3 or len(request.json['password']) < 8:
-            return abort(400)
+        # if len(request.json['username']) < 3 or len(request.json['password']) < 8:
+        #     return abort(400)
         if 'username' in request.json:
-            u.username = request.json['username']
+            if len(request.json['username']) > 3:
+                u.username = request.json['username']
+            else:
+                return abort(400)
         if 'password' in request.json:
-            u.password = scramble(request.json['password'])
+            if len(request.json['password']) > 8:
+                u.password = scramble(request.json['password'])
+            else:
+                return abort(400)
         db.session.commit()
         return jsonify(True)
     except:
