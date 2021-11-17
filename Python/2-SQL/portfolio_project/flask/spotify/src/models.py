@@ -14,6 +14,15 @@ songs_artists = db.Table('songs_artists',
                                    db.ForeignKey('artists.artist_id'))
                          )
 
+# Song to Album (many-many helper table)
+
+songs_albums = db.Table('songs_albums',
+                        db.Column('song_id', db.Integer,
+                                  db.ForeignKey('songs.song_id')),
+                        db.Column('album_id', db.Integer,
+                                  db.ForeignKey('albums.album_id'))
+                        )
+
 
 class Song(db.Model):
     __tablename__ = 'songs'
