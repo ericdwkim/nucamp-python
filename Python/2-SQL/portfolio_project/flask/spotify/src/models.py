@@ -9,9 +9,9 @@ db = SQLAlchemy()
 
 songs_artists = db.Table('songs_artists',
                          db.Column('song_id', db.Integer,
-                                   db.ForeignKey('song.song_id')),
+                                   db.ForeignKey('songs.song_id')),
                          db.Column('artist_id', db.Integer,
-                                   db.ForeignKey('artist.artist_id'))
+                                   db.ForeignKey('artists.artist_id'))
                          )
 
 

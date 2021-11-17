@@ -1,3 +1,21 @@
 // portfolio_project/flask
-docker exec -i pg_container psql -c 'CREATE DATABASE spotify;'
+1. docker exec -i pg_container psql -c 'CREATE DATABASE spotify;'
+
+2. "[flask_migrate] error: can't locate revision identified by b0e6f47682c0"
+"b0e6f47682c0" = alembic_version from twitter db 
+
+FIX: 
+a) delete migrations folder
+b) change SQLALCHEMY_DATABASE_URI='postgresql://postgres@localhost:5432/spotify'
+in src/__init__.py
+c) run `flask db init` to recreate migrations 
+directory w/ versions and everything 
+d) run `flask db migrate` to create migration (along w/ alembic_version in versions folder)
+    ran into sqlalchemy.exc.NoReferencedTableError: Foreign key associated with column 'songs_artists.song_id' could not find table 'song' with which to generate a foreign key to target column 'song_id'
+    FIX: songs_artists helper table in models.py points to (2) fks that were `song.song_id` and `artist.artist_id` which it couldn't find
+         since the *class* model names are singular and the __tablename__ overrides them into plural, so simply changing them to
+         `songs.song_id` and `artists.artist_id` and rerunning cmd worked!
+
+e) run `flask db upgrade` to apply the migration
+
 
