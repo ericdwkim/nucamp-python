@@ -108,8 +108,47 @@ indexed people_birthdate_index
 
 Index Data structures: 
 1. B-Trees --> an ordered structure, such as in alphabetical order; uses matching w/ the following:
-<, <=, >=, or =; binary search, so it has an O(log n)
+<, <=, >=, or =; binary search, so it has an O(log n); 
+    NOTE: B-tree is the default data structure for INDEX queries
+
 2. Hash Tables --> not ordered structure; uses matching w/ `=` only; simple search, so it has an O(1)
 which is faster than binary search 
 
 Rule of thumb: *only* index columns that are queried frequently 
+================================================================================================================
+
+pg_indexes --> postgres' built-in table thatt stores metadata about the indexes, such as 
+tablename and index_name
+================================================================================================================
+                                    Query Planning
+
+1. EXPLAIN
+
+- prepend to a SELECT query to see info about the query plan
+
+"""
+EXPLAIN SELECT date_acquired FROM moma_works
+WHERE date_acquired BETWEEN '1950-01-01' AND '1959-12-31';
+"""
+*note: the BETWEEN keyword is really just an abstraction of `>=` and `<=` operators!!
+
+2. EXPLAIN ANALYZE
+
+- prepend to a SELECT query to see info about the query plan as well as
+the cost (time) of each step including planning (ms) and execution (ms)
+
+"""
+EXPLAIN ANALYZE SELECT date_acquired FROM moma_works
+WHERE date_acquired BETWEEN '1950-01-01' AND '1959-12-31';
+"""
+
+3. Query planning (EXPLAIN ANALYZE) w/ index data structure (b-tree default)
+
+"""
+CREATE INDEX date_acq_idx ON moma_works(date_acquired);
+
+EXPLAIN ANALYZE SELECT date_acquired FROM moma_works
+WHERE date_acquired BETWEEN '1950-01-01' AND '1959-12-31';
+"""
+
+Results: query planning time (ms) took longer; however, execution time (ms) was much faster!
