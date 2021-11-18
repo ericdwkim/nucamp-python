@@ -13,3 +13,103 @@ ex: NOW()
                                     Triggers
 - executed before/after INSERT, UPDATE, DELETE, or TRUNCATE
 - execute once per modified row, or once per SQL stmt
+================================================================================================================
+
+                                        Performance Tips
+
+                1. Reduce round trips
+
+Example query w/ multiple round trips:
+
+"""
+INSERT INTO my_table (col1, col2, col3) VALUES (1, 2, 3):
+INSERT INTO my_table (col1, col2, col3) VALUES (4, 5, 6):
+INSERT INTO my_table (col1, col2, col3) VALUES (1, 2, 3):
+INSERT INTO my_table (col1, col2, col3) VALUES (4, 5, 6):
+INSERT INTO my_table (col1, col2, col3) VALUES (7, 8, 9):
+
+"""
+
+Example query w/o multiple round trips:
+
+"""
+
+INSERT INTO my_table (col1, col2, col3) VALUES
+(1, 2, 3), (4, 5, 6), (1, 2, 3), (4, 5, 6), (7, 8, 9);
+
+"""
+
+
+
+                2. N + 1 query
+
+Example N + 1 query w/ task of printing all orders for each customer:
+
+"""
+for c in Customer.objects.all(): # select * from customers
+    for o in c.orders:
+        print(o)
+"""
+
+Explanation: the inner for loop runs 'n' times, making 'n' queries; 
+in this example, 'n' is the number of customers returned from the 1st query;
+as the number of customers increases, this query becomes inefficient and cannot scale
+
+
+Example of more efficient query w/ same task:
+
+"""
+orders = Order.objects.all() # select * from orders --> queries orders list once
+for c in Customer.objects.all(): # select * from customers
+    for o in orders.filter(customer_id = c.id):
+        print(o)
+"""
+
+Explanation: since we've created the orders list object from a single orders query,
+we can just search through that list instead of querying that orders list over and over again
+================================================================================================================
+
+                                        Indexes
+
+Syntax:
+
+"""
+CREATE INDEX index_name ON table_name (column_name);
+"""
+
+Processing Order:
+1. postgres begins to build index structure
+2. while building index, table is in read-only mode aka `SELECT` only
+3. once index is built, read-only mode is turned off
+4. postgres updates index as table values change
+
+
+Index query use case example:
+
+"""
+CREATE TABLE people (
+    id SERIAL PRIMARY KEY
+    full_name TEXT NOT NULL,
+    birthdate DATE DEFAULT now()
+);
+
+CREATE INDEX people_birthdate_index ON people (birthdate);
+
+SELECT full_name FROM people WHERE birthdate = '1912-06-23';
+SELECT full_name FROM people WHERE birthdate = '1903-12-28';
+SELECT full_name FROM people WHERE birthdate = '1916-04-30';
+"""
+
+Explanation: instead of scanning the people table, it will reference the
+indexed people_birthdate_index 
+
+    Question: How do indexes have the same size as tables, but faster lookup time?
+    Answer: Index data structures that are optimized for lookup
+
+Index Data structures: 
+1. B-Trees --> an ordered structure, such as in alphabetical order; uses matching w/ the following:
+<, <=, >=, or =; binary search, so it has an O(log n)
+2. Hash Tables --> not ordered structure; uses matching w/ `=` only; simple search, so it has an O(1)
+which is faster than binary search 
+
+Rule of thumb: *only* index columns that are queried frequently 
