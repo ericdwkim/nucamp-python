@@ -13,6 +13,8 @@ ex: NOW()
                                     Triggers
 - executed before/after INSERT, UPDATE, DELETE, or TRUNCATE
 - execute once per modified row, or once per SQL stmt
+-In a CREATE TRIGGER statement, if you do not specify FOR EACH ROW 
+or FOR EACH STATEMENT, the default is FOR EACH STATEMENT. 
 ================================================================================================================
 
                                         Performance Tips

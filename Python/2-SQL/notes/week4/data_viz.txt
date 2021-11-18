@@ -1,1 +1,8 @@
 `# %%` to activate jupyter code cell
+
+ NumPy provides tools for working with numbers such as the ndarray object (an n-dimensional array), 
+ but it is not itself a graphing library. 
+ It is used in conjunction with other libraries such as MatPlotLib, which do create graphs. 
+
+Pandas is a Python library that provides tools for data manipulation 
+and visualization from tabular data, such as SQL databases. 
