@@ -152,3 +152,36 @@ WHERE date_acquired BETWEEN '1950-01-01' AND '1959-12-31';
 """
 
 Results: query planning time (ms) took longer; however, execution time (ms) was much faster!
+================================================================================================================
+                                        Admin
+1. Creating Backup
+
+pg_dump --> CLI available in Docker container running postgres db
+
+command syntax example:
+"""
+docker exec pg_container pg_dump --file <file_path> <db_name>
+"""
+
+command example:
+"""
+docker exec pg_container pg_dump --file ./data/dump.sql week4
+"""
+
+
+2. Restoring Backup
+
+"""
+docker exec pg_container psql -c 'CREATE DATABASE week4_copy;' 
+"""
+
+"""
+docker exec pg_container psql -d week4_copy -f ./data/dump.sql
+"""
+
+3. Clean up
+
+"""
+docker exec pg_container psql -c 'DROP DATABASE week4_copy;'
+"""
+
