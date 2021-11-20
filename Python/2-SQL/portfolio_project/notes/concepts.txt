@@ -1,0 +1,9 @@
+Flask App - Folder Structure
+
+<app>/
+wsgi.py - web server gateway --> handles incoming/outgoing traffic
+of requests to the server to the designated ports for the application
+
+<app>/src/
+__init__.py - allows the app to talk to and update accordingly with the model;
+any changes made to the model can be reflected to the db

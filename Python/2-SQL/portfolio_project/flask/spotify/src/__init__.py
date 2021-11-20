@@ -1,6 +1,8 @@
 import os
 from flask import Flask
 from flask_migrate import Migrate
+from .models import db
+from .api import accounts, artists, albums, groups, songs
 
 # https://flask.palletsprojects.com/en/2.0.x/patterns/appfactories/
 
@@ -27,12 +29,13 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    from .models import db
     db.init_app(app)
     migrate = Migrate(app, db)
 
-    # from .api import users, tweets
-    # app.register_blueprint(users.bp)
-    # app.register_blueprint(tweets.bp)
+    # app.register_blueprint(accounts.bp)
+    # app.register_blueprint(albums.bp)
+    app.register_blueprint(artists.bp)
+    # app.register_blueprint(groups.bp)
+    # app.register_blueprint(songs.bp)
 
     return app

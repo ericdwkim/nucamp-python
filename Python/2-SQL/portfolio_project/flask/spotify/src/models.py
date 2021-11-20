@@ -136,8 +136,14 @@ class Artist(db.Model):
     artist_song = db.relationship(
         'Song', secondary=songs_artists, backref=db.backref('artist', lazy='dynamnic'))
 
-    def __init__(self, artist_name: str, artist_bio: str):
+    def __init__(self, artist_name: str):
         self.artist_name = artist_name
-        self.artist_bio = artist_bio
+        # self.artist_bio = artist_bio # nullable
 
         # TODO: serialize() ?
+    def serialize(self):
+        return {
+            'artist_id': self.artist_id,
+            'artist_name': self.artist_name,
+            'artist_bio': self.artist_bio
+        }
