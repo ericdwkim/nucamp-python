@@ -40,6 +40,13 @@ groups_artists = db.Table('groups_artists',
                                     db.ForeignKey('artists.artist_id'), primary_key=True)
                           )
 
+accounts_artists = db.Table('accounts_artists',
+                            db.Column('account_id', db.Integer,
+                                      db.ForeignKey('accounts.account_id'), primary_key=True),
+                            db.Column('artist_id', db.Integer,
+                                      db.ForeignKey('artists.artist_id'), primary_key=True)
+                            )
+
 
 class Song(db.Model):
     __tablename__ = 'songs'
@@ -71,10 +78,10 @@ class Album(db.Model):
     num_of_songs = db.Column(db.Integer, nullable=False)
     release_date = db.Column(db.DateTime, nullable=False)
 
-    album_songs = db.relationship(
+    album_song = db.relationship(
         'Song', secondary=songs_albums, backref=db.backref('album', lazy='dynamnic')
     )
-    album_artists = db.relationship(
+    album_artist = db.relationship(
         'Artist', secondary=albums_artists, backref=db.backref('album', lazy='dynamnic'))
 
     def __init__(self, album_title: str, album_length: int, artwork_url: str, num_of_songs: int, release_date: datetime.datetime):
@@ -92,7 +99,7 @@ class Group(db.Model):
     group_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     group_name = db.Column(db.String(128), nullable=False)
 
-    group_members = db.relationship(
+    group_member = db.relationship(
         'Artist', secondary=groups_artists, backref=db.backref('members', lazy='dynamnic'))
 
     def __init__(self, group_name: str):
@@ -108,6 +115,9 @@ class Account(db.Model):
     user_email = db.Column(db.String(255), unique=True, nullable=False)
     user_password = db.Column(db.String(255), nullable=False)
 
+    account_artist = db.relationship(
+        'Artist', secondary=accounts_artists, backref=db.backref('account', lazy='dynamnic'))
+
     def __init__(self, username: str, user_email: str):
         self.username = username
         self.user_email = user_email
@@ -121,7 +131,7 @@ class Artist(db.Model):
     artist_name = db.Column(db.String(128), nullable=False)
     artist_bio = db.Column(db.String(500))
 
-    artist_songs = db.relationship(
+    artist_song = db.relationship(
         'Song', secondary=songs_artists, backref=db.backref('artist', lazy='dynamnic'))
 
     def __init__(self, artist_name: str, artist_bio: str):

@@ -1,3 +1,15 @@
+starting dev mode
+1. python interpreter as 'venv':venv
+2. flask/spotify dir `. ../../../venv/Scripts/activate
+3. set environmental var; `export FLASK_ENV=development`
+4. boot up flask server; `flask run`
+=========================================================
+updating and committing db changes
+1. flask db stamp head
+2. flask db migrate
+3. flask db upgrade
+=========================================================
+
 // portfolio_project/flask
 1. docker exec -i pg_container psql -c 'CREATE DATABASE spotify;'
 
