@@ -9,19 +9,28 @@ db = SQLAlchemy()
 
 songs_artists = db.Table('songs_artists',
                          db.Column('song_id', db.Integer,
-                                   db.ForeignKey('songs.song_id')),
+                                   db.ForeignKey('songs.song_id'), primary_key=True),
                          db.Column('artist_id', db.Integer,
-                                   db.ForeignKey('artists.artist_id'))
+                                   db.ForeignKey('artists.artist_id'), primary_key=True)
                          )
 
 # Song to Album (many-many helper table)
 
 songs_albums = db.Table('songs_albums',
                         db.Column('song_id', db.Integer,
-                                  db.ForeignKey('songs.song_id')),
+                                  db.ForeignKey('songs.song_id'), primary_key=True),
                         db.Column('album_id', db.Integer,
-                                  db.ForeignKey('albums.album_id'))
+                                  db.ForeignKey('albums.album_id'), primary_key=True)
                         )
+
+# Album to Artist (many-many helper table)
+
+albums_artists = db.Table('albums_artists',
+                          db.Column('album_id', db.Integer,
+                                    db.ForeignKey('albums.album_id'), primary_key=True),
+                          db.Column('artist_id', db.Integer,
+                                    db.ForeignKey('artists.artist_id'), primary_key=True)
+                          )
 
 
 class Song(db.Model):
@@ -53,6 +62,12 @@ class Album(db.Model):
     artwork_url = db.Column(db.String(280), nullable=False)
     num_of_songs = db.Column(db.Integer, nullable=False)
     release_date = db.Column(db.DateTime, nullable=False)
+
+    album_songs = db.relationship(
+        'Song', secondary=songs_albums, backref=db.backref('album', lazy='dynamnic')
+    )
+    album_artists = db.relationship(
+        'Artist', secondary=albums_artists, backref=db.backref('album', lazy='dynamnic'))
 
     def __init__(self, album_title: str, album_length: int, artwork_url: str, num_of_songs: int, release_date: datetime.datetime):
         self.album_title = album_title
@@ -96,7 +111,7 @@ class Artist(db.Model):
     artist_bio = db.Column(db.String(500))
 
     artist_songs = db.relationship(
-        'Song', secondary=songs_artists, backref=db.backref('writers', lazy='dynamnic'))
+        'Song', secondary=songs_artists, backref=db.backref('artist', lazy='dynamnic'))
 
     def __init__(self, artist_name: str, artist_bio: str):
         self.artist_name = artist_name
