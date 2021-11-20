@@ -33,6 +33,14 @@ albums_artists = db.Table('albums_artists',
                           )
 
 
+groups_artists = db.Table('groups_artists',
+                          db.Column('group_id', db.Integer,
+                                    db.ForeignKey('groups.group_id'), primary_key=True),
+                          db.Column('artist_id', db.Integer,
+                                    db.ForeignKey('artists.artist_id'), primary_key=True)
+                          )
+
+
 class Song(db.Model):
     __tablename__ = 'songs'
     song_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -83,6 +91,9 @@ class Group(db.Model):
     __tablename__ = 'groups'
     group_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     group_name = db.Column(db.String(128), nullable=False)
+
+    group_members = db.relationship(
+        'Artist', secondary=groups_artists, backref=db.backref('members', lazy='dynamnic'))
 
     def __init__(self, group_name: str):
         self.group_name = group_name
