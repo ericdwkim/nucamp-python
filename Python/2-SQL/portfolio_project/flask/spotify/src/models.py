@@ -32,6 +32,7 @@ albums_artists = db.Table('albums_artists',
                                     db.ForeignKey('artists.artist_id'), primary_key=True)
                           )
 
+# Group to Artist (many-many helper table)
 
 groups_artists = db.Table('groups_artists',
                           db.Column('group_id', db.Integer,
@@ -39,6 +40,7 @@ groups_artists = db.Table('groups_artists',
                           db.Column('artist_id', db.Integer,
                                     db.ForeignKey('artists.artist_id'), primary_key=True)
                           )
+# Account to Artist (many-many helper table)
 
 accounts_artists = db.Table('accounts_artists',
                             db.Column('account_id', db.Integer,
