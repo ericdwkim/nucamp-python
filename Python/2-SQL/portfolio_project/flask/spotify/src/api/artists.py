@@ -1,24 +1,25 @@
 from flask import Blueprint, json, jsonify, abort, request
 from ..models import Artist, db
 
-bp = Blueprint('artists', __name__, url_prefix='/artists')
+bp_artists = Blueprint('artists', __name__, url_prefix='/artists')
 
-# test endpoint; TODO: returns 404
+# test endpoint
 
-
-@bp.route('', methods=['GET'])
-def index():
-    return jsonify({"msg": "hello world"})
-
-# localhost:5000/artists
 
 # @bp_artists.route('', methods=['GET'])
 # def index():
-#     artists = Artist.query.all()
-#     result = []
-#     for a in artists:
-#         result.append(a.serialize())
-#     return jsonify(result)
+#     return jsonify({"msg": "hello world"})
+
+# localhost:5000/artists
+
+
+@bp_artists.route('', methods=['GET'])
+def index():
+    artists = Artist.query.all()
+    result = []
+    for a in artists:
+        result.append(a.serialize())
+    return jsonify(result)
 
 
 # @bp_artists.route('', methods=['POST'])
