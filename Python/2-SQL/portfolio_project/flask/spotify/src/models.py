@@ -69,6 +69,15 @@ class Song(db.Model):
 
     # def serialize(self):
         # TODO ?
+    def serialize(self):
+        return {
+            'song_id': self.song_id,
+            'song_title': self.song_title,
+            'song_writer': self.song_writer,
+            'song_producer': self.song_producer,
+            'song_length': self.song_length,
+            'release_date': self.release_date
+        }
 
 
 class Album(db.Model):
@@ -108,6 +117,12 @@ class Group(db.Model):
         self.group_name = group_name
 
         # TODO: serialize() ?
+    def serialize(self):
+        print("this is self.group_member", self.group_member)
+        return {
+            'group_id': self.group_id,
+            'group_name': self.group_name,
+        }
 
 
 class Account(db.Model):
@@ -142,6 +157,7 @@ class Artist(db.Model):
 
         # TODO: serialize() ?
     def serialize(self):
+        print("this is self.artist_song", self.artist_song)
         return {
             'artist_id': self.artist_id,
             'artist_name': self.artist_name,
