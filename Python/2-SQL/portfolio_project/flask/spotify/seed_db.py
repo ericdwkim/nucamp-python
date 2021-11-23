@@ -78,31 +78,10 @@ def main():
 if __name__ == '__main__':
     main()
 
-"""
-store the URI links in the database.
-You will need to have a function that saves and returns the location of the sound file so you can store it in your table and
-a function that can look up this table and go and load the data from the bucket.
+"""TODO: programmatically fetch (from s3) and store (to sql db) URIs for each s3 object"""
 
 
-# saves and returns location of audio file from s3 bucket
-
-audioFileLocation  = None # save audio file location
-
-def save_and_return_audio_file_location():
-    # 1) store the locations into the audio table
-        # sql query stmt: INSERT INTO audios (audio_URI) VALUES ([list_of_URIs?])
-    # 2) return location of each audio file from audi
-
-# looks up the audio table, grabs and loads data from s3 bucket
-def lookup_and_load_data_from_bucket():
-    # 1) look up audio table
-    # 2) load data from bucket
-"""
-
-audioFIleLocation = None  # save audio file location
-
-
-def save_return_audioFileLocation():
+"""def save_return_audioFileLocation():
     for uri in URIs:
         #  INSERT INTO audios (audio_URI) VALUES (uri of URIs)
         insert_uris_query = Audio.insert().values(uri)
@@ -115,3 +94,4 @@ def save_return_audioFileLocation():
     db.session.commit()
     # return values from return query ?
     return someReturningObject?
+"""
