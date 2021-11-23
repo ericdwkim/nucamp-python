@@ -1,7 +1,4 @@
-"""
-TODO: Populate AWS s3 bucket with personal audio files using AWS SDK.
-"""
-
+# NOTE: stores & downloads local audio files to AWS s3 bucket
 
 import os
 import boto3
@@ -49,10 +46,10 @@ def main():
     Downloading Files from S3
     TODO: programmatically fetch all keys from each s3 object to download in mass
     """
-    s3.download_file(bucket_name, '6Blocc - My Selekta (Bassnectar VIP_51910194_soundcloud.mp3',
-                     os.path.join('./audio_tracks/download', 'test.mp3'))
-    s3.download_file(bucket_name, 'A-Trak, AraabMuzik & Ape Drums - Action_208315032_soundcloud.mp3',
-                     os.path.join('./audio_tracks/download', 'test2.mp3'))
+    # s3.download_file(bucket_name, 'someTrack1.mp3',
+    #                  os.path.join('./audio_tracks/download', 'test.mp3'))
+    # s3.download_file(bucket_name, 'someTrack2.mp3',
+    #                  os.path.join('./audio_tracks/download', 'test2.mp3'))
 
 
 if __name__ == '__main__':
