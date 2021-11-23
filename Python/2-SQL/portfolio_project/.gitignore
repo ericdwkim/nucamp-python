@@ -1,2 +1,2 @@
 .env
-flask\spotify\audio_tracks
+flask/spotify/audio_tracks/*
