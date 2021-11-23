@@ -1,23 +1,26 @@
 """
 TODO: Populate spotify database with personal data using the SQLAlchemy ORM.
 """
+# import os
+# import boto3
+# from dotenv import load_dotenv
 import random
 import string
 import hashlib
 import secrets
-# from faker import Faker - not req'd; a python lib to genearte fake data
-from spotify.src.models import Account, Album, Artist, Group, Song, Audio, songs_artists, songs_albums, albums_artists, groups_artists, accounts_artists, db
-from spotify.src import create_app
+from src.models import Account, Album, Artist, Group, Song, Audio, songs_artists, songs_albums, albums_artists, groups_artists, accounts_artists, db
+from src import create_app
 
-"""
-SONG_COUNT = 
-ALBUM_COUNT =
-GROUP_COUNT =
-ACCOUNT_COUNT =
-ARTIST_COUNT =
+# load_dotenv()
 
+# access_key = os.getenv('access_key')
+# print(access_key)
 
-"""
+# access_secret = os.getenv('access_secret')
+# print(access_secret)
+
+# s3_bucket = os.getenv('bucket_name')
+# print(s3_bucket)
 
 
 URIs = [
@@ -72,11 +75,12 @@ def main():
     truncate_tables()
 
 
-main()
+if __name__ == '__main__':
+    main()
 
 """
 store the URI links in the database.
-You will need to have a function that saves and returns the location of the sound file so you can store it in your table and 
+You will need to have a function that saves and returns the location of the sound file so you can store it in your table and
 a function that can look up this table and go and load the data from the bucket.
 
 
@@ -85,11 +89,11 @@ a function that can look up this table and go and load the data from the bucket.
 audioFileLocation  = None # save audio file location
 
 def save_and_return_audio_file_location():
-    # 1) store the locations into the audio table 
+    # 1) store the locations into the audio table
         # sql query stmt: INSERT INTO audios (audio_URI) VALUES ([list_of_URIs?])
     # 2) return location of each audio file from audi
 
-# looks up the audio table, grabs and loads data from s3 bucket 
+# looks up the audio table, grabs and loads data from s3 bucket
 def lookup_and_load_data_from_bucket():
     # 1) look up audio table
     # 2) load data from bucket
