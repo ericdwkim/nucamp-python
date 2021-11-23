@@ -30,24 +30,24 @@ def main():
     """
     Upload Files to S3
     """
-    # data_file_path = os.path.join(os.getcwd(), 'audio_tracks')
-    # for file in os.listdir(data_file_path):
-    #     if not file.startswith('~'):
-    #         try:
-    #             print('Uploading file {0}...'.format(file))
-    #             s3.upload_file(
-    #                 os.path.join(data_file_path, file),
-    #                 bucket_name,
-    #                 file
-    #             )
-    #         except ClientError as e:
-    #             print(f'Credential is incorrect' + e)
-    #         except Exception as e:
-    #             print(e)
+    data_file_path = os.path.join(os.getcwd(), 'audio_tracks')
+    for file in os.listdir(data_file_path):
+        if not file.startswith('~'):
+            try:
+                print('Uploading file {0}...'.format(file))
+                s3.upload_file(
+                    os.path.join(data_file_path, file),
+                    bucket_name,
+                    file
+                )
+            except ClientError as e:
+                print(f'Credential is incorrect' + e)
+            except Exception as e:
+                print(e)
 
     """
     Downloading Files from S3
-    TODO: programmatically fetch all keys from s3 to download
+    TODO: programmatically fetch all keys from each s3 object to download in mass
     """
     s3.download_file(bucket_name, '6Blocc - My Selekta (Bassnectar VIP_51910194_soundcloud.mp3',
                      os.path.join('./audio_tracks/download', 'test.mp3'))
