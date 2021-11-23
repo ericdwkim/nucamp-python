@@ -5,9 +5,8 @@ import boto3
 from botocore.exceptions import ClientError
 from dotenv import load_dotenv
 
-"""
-Load enviromental variables
-"""
+
+# Load enviromental variables
 load_dotenv()
 access_key = os.getenv('access_key')
 access_secret = os.getenv('access_secret')
@@ -15,18 +14,15 @@ bucket_name = os.getenv('bucket_name')
 
 
 def main():
-    """
-    Connect to S3 Service
-    """
+
+    # Connect to S3 Service
     s3 = boto3.client(
         's3',
         aws_access_key_id=access_key,
         aws_secret_access_key=access_secret
     )
 
-    """
-    Upload Files to S3
-    """
+    # Upload Files to S3
     data_file_path = os.path.join(os.getcwd(), 'audio_tracks')
     for file in os.listdir(data_file_path):
         if not file.startswith('~'):
@@ -42,10 +38,9 @@ def main():
             except Exception as e:
                 print(e)
 
-    """
-    Downloading Files from S3
-    TODO: programmatically fetch all keys from each s3 object to download in mass
-    """
+    # Downloading Files from S3
+    # TODO: programmatically fetch all keys from each s3 object to download in mass
+
     # s3.download_file(bucket_name, 'someTrack1.mp3',
     #                  os.path.join('./audio_tracks/download', 'test.mp3'))
     # s3.download_file(bucket_name, 'someTrack2.mp3',
