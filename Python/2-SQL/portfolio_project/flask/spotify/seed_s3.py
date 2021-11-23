@@ -21,38 +21,38 @@ def main():
     """
     Connect to S3 Service
     """
-    client_s3 = boto3.client(
+    s3 = boto3.client(
         's3',
         aws_access_key_id=access_key,
         aws_secret_access_key=access_secret
     )
 
-    print(client_s3)
+    """
+    Upload Files to S3
+    """
+    # data_file_path = os.path.join(os.getcwd(), 'audio_tracks')
+    # for file in os.listdir(data_file_path):
+    #     if not file.startswith('~'):
+    #         try:
+    #             print('Uploading file {0}...'.format(file))
+    #             s3.upload_file(
+    #                 os.path.join(data_file_path, file),
+    #                 bucket_name,
+    #                 file
+    #             )
+    #         except ClientError as e:
+    #             print(f'Credential is incorrect' + e)
+    #         except Exception as e:
+    #             print(e)
 
     """
-    Upload Files to S3 Bucket
-
+    Downloading Files from S3
+    TODO: programmatically fetch all keys from s3 to download
     """
-    data_file_path = os.path.join(os.getcwd(), 'audio_tracks')
-    for file in os.listdir(data_file_path):
-        if not file.startswith('~'):
-            try:
-                print('Uploading file {0}...'.format(file))
-                client_s3.upload_file(
-                    os.path.join(data_file_path, file),
-                    bucket_name,
-                    file
-                )
-            except ClientError as e:
-                print('Credential is incorrect')
-                print(e)
-            except Exception as e:
-                print(e)
-
-    """
-    Download Files to S3 Bucket
-
-    """
+    s3.download_file(bucket_name, '6Blocc - My Selekta (Bassnectar VIP_51910194_soundcloud.mp3',
+                     os.path.join('./audio_tracks/download', 'test.mp3'))
+    s3.download_file(bucket_name, 'A-Trak, AraabMuzik & Ape Drums - Action_208315032_soundcloud.mp3',
+                     os.path.join('./audio_tracks/download', 'test2.mp3'))
 
 
 if __name__ == '__main__':
