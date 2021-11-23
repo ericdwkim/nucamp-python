@@ -75,13 +75,8 @@ def main():
     truncate_tables()
 
 
-if __name__ == '__main__':
-    main()
-
-"""TODO: programmatically fetch (from s3) and store (to sql db) URIs for each s3 object"""
-
-
-"""def save_return_audioFileLocation():
+"""
+def save_return_audioFileLocation():
     for uri in URIs:
         #  INSERT INTO audios (audio_URI) VALUES (uri of URIs)
         insert_uris_query = Audio.insert().values(uri)
@@ -94,4 +89,32 @@ if __name__ == '__main__':
     db.session.commit()
     # return values from return query ?
     return someReturningObject?
+
+
+    audio = Audio(uri=uri)
+        session.add(audio)
+    session.commit()
+
+
+    for audio in tracks:
+    ret_uri, status = amzn.s3.save(path, audio)
+    if status:
+         saved_audio = Audio(uri=ret_uri)
+         session.add(saved_audio)
+
+session.commit()
 """
+
+# TODO: programmatically fetch (from s3) and store (to sql db) URIs for each s3 object
+
+
+def ret_uri():
+    # TODO: fetches uris from s3 bucket and returns uri object
+
+
+def store_uri():
+    # TODO: stores returned uri object to sql db table
+
+
+if __name__ == '__main__':
+    main()
