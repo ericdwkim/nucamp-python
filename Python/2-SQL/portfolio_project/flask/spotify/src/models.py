@@ -163,3 +163,12 @@ class Artist(db.Model):
             'artist_name': self.artist_name,
             'artist_bio': self.artist_bio
         }
+
+
+class Audio(db.Model):
+    __table__name = 'audios'
+    audio_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    audio_URI = db.Column(db.String(128), nullable=False)
+
+    def __init__(self, audio_URI: str):
+        self.audio_URI = audio_URI
