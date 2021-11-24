@@ -1,26 +1,22 @@
 """
 TODO: Populate spotify database with personal data using the SQLAlchemy ORM.
 """
-# import os
-# import boto3
-# from dotenv import load_dotenv
+import os
+import boto3
+from dotenv import load_dotenv
 import random
 import string
 import hashlib
 import secrets
+import urllib
 from src.models import Account, Album, Artist, Group, Song, Audio, songs_artists, songs_albums, albums_artists, groups_artists, accounts_artists, db
 from src import create_app
 
-# load_dotenv()
-
-# access_key = os.getenv('access_key')
-# print(access_key)
-
-# access_secret = os.getenv('access_secret')
-# print(access_secret)
-
-# s3_bucket = os.getenv('bucket_name')
-# print(s3_bucket)
+# Load environmental variables
+load_dotenv()
+access_key = os.getenv('access_key')
+access_secret = os.getenv('access_secret')
+s3_bucket = os.getenv('bucket_name')
 
 
 URIs = [
@@ -38,83 +34,77 @@ URIs = [
 ]
 
 
-def random_passhash():
-    """Get hashed and salted password of length N | 8 <= N <= 15"""
-    raw = ''.join(
-        random.choices(
-            string.ascii_letters + string.digits + '!@#$%&',  # valid pw characters
-            k=random.randint(8, 15)  # length of pw
-        )
-    )
+# def random_passhash():
+#     # Get hashed and salted password of length N | 8 <= N <= 15
+#     raw = ''.join(
+#         random.choices(
+#             string.ascii_letters + string.digits + '!@#$%&',  # valid pw characters
+#             k=random.randint(8, 15)  # length of pw
+#         )
+#     )
 
-    salt = secrets.token_hex(16)
+#     salt = secrets.token_hex(16)
 
-    return hashlib.sha512((raw + salt).encode('utf-8')).hexdigest()
+#     return hashlib.sha512((raw + salt).encode('utf-8')).hexdigest()
 
 
-def truncate_tables():
-    """Delete all rows from database tables"""
-    db.session.execute(songs_artists.delete())
-    db.session.execute(songs_albums.delete())
-    db.session.execute(albums_artists.delete())
-    db.session.execute(groups_artists.delete())
-    db.session.execute(accounts_artists.delete())
-    Song.query.delete()
-    Album.query.delete()
-    Group.query.delete()
-    Account.query.delete()
-    Artist.query.delete()
-    Audio.query.delete()
-    db.session.commit()
+# def truncate_tables():
+#     # Delete all rows from database tables
+#     db.session.execute(songs_artists.delete())
+#     db.session.execute(songs_albums.delete())
+#     db.session.execute(albums_artists.delete())
+#     db.session.execute(groups_artists.delete())
+#     db.session.execute(accounts_artists.delete())
+#     Song.query.delete()
+#     Album.query.delete()
+#     Group.query.delete()
+#     Account.query.delete()
+#     Artist.query.delete()
+#     Audio.query.delete()
+#     db.session.commit()
 
 
 def main():
-    """Main driver function"""
-    app = create_app()
-    app.app_context().push()
-    truncate_tables()
+    # Main driver function
+    # app = create_app()
+    # app.app_context().push()
+    # truncate_tables()
+
+    # Connect to S3 service
+    s3 = boto3.client(
+        's3',
+        aws_access_key_id=access_key,
+        aws_secret_access_key=access_secret
+    )
+
+    # TODO: object url requires configuring permissions for each individual s3 object;
+    # programmatically access each s3 object; see SAMPLE ACL:
+
+    """
+    https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#sample-acl
+    https://docs.aws.amazon.com/AmazonS3/latest/userguide/amazon-s3-policy-keys.html
+    https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-arn-format.html
+    https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-policy-language-overview.html
+    
+    """
+
+    # TODO: return fetched URL objects?
+    # fetch s3 object URLs; NOTE: req's permissions to play
+    # print((k['Key'])) # NOTE: returns audio file
+
+    prefix = "https://s3.us-east-2.amazonaws.com/my.audio.tracks/"
+    for k in s3.list_objects(Bucket=s3_bucket)['Contents']:
+        print(prefix + urllib.parse.quote(k['Key'], safe="~()*!.'"))
 
 
-"""
-def save_return_audioFileLocation():
-    for uri in URIs:
-        #  INSERT INTO audios (audio_URI) VALUES (uri of URIs)
-        insert_uris_query = Audio.insert().values(uri)
-        db.session.execute(insert_uris_query)
-
-        # SELECT audio_URI FROM audios;
-        return_uris_query = Audio.select(Audio.audio_URI)
-        db.session.execute(return_uris_query)
-    # insert uris to table
-    db.session.commit()
-    # return values from return query ?
-    return someReturningObject?
+# def store_uri():
+#     # TODO: stores returned uri objects to sql db table
+#     audio = Audio(audio_URI=URIs)
+#     db.session.add(audio)
+#     db.session.commit()
 
 
-    audio = Audio(uri=uri)
-        session.add(audio)
-    session.commit()
-
-
-    for audio in tracks:
-    ret_uri, status = amzn.s3.save(path, audio)
-    if status:
-         saved_audio = Audio(uri=ret_uri)
-         session.add(saved_audio)
-
-session.commit()
-"""
-
-# TODO: programmatically fetch (from s3) and store (to sql db) URIs for each s3 object
-
-
-def ret_uri():
-    # TODO: fetches uris from s3 bucket and returns uri object
-
-
-def store_uri():
-    # TODO: stores returned uri object to sql db table
-
+# store_uri()
 
 if __name__ == '__main__':
     main()
