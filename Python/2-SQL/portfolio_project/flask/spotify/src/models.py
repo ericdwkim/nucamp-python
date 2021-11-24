@@ -168,7 +168,7 @@ class Artist(db.Model):
 class Audio(db.Model):
     __table__name = 'audios'
     audio_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    audio_URI = db.Column(db.String(128), nullable=False)
+    audio_url = db.Column(db.String(256), nullable=False)
 
-    def __init__(self, audio_URI: str):
-        self.audio_URI = audio_URI
+    def __init__(self, audio_url: str):
+        self.audio_url = audio_url
