@@ -166,6 +166,7 @@ class Artist(db.Model):
 
 
 class Audio(db.Model):
+    # TODO: tablename overriding not working
     __table__name = 'audios'
     audio_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     audio_url = db.Column(db.String(256), nullable=False)
