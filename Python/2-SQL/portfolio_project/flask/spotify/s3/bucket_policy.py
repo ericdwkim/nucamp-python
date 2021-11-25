@@ -18,15 +18,16 @@ def main():
 
     bucket_policy = {
         'Version': '2012-10-17',
-        'Statement': [{
-            'Sid': 'AddPerm',
-            'Effect': 'Allow',
-            'Principal': {
-                'AWS': f'arn:aws:iam::{account_id}:root'
-            },
-            'Action': ['s3:GetObject'],
-            'Resource': f'arn:aws:s3:::{bucket_name}/*'
-        }]
+        'Statement': [
+            {
+                'Sid': 'AddPerm',
+                'Effect': 'Allow',
+                'Principal': {
+                    'AWS': f'arn:aws:iam::{account_id}:root'
+                },
+                'Action': ['s3:GetObject'],
+                'Resource': f'arn:aws:s3:::{bucket_name}/*'
+            }]
     }
 
     # Convert policy from JSON dict to string
