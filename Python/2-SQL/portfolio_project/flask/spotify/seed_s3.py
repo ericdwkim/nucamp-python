@@ -1,6 +1,7 @@
 # NOTE: stores & downloads local audio files to AWS s3 bucket
 
 import os
+import logging
 import boto3
 from botocore.exceptions import ClientError
 from dotenv import load_dotenv
@@ -34,9 +35,10 @@ def main():
                     file
                 )
             except ClientError as e:
-                print(f'Credential is incorrect' + e)
-            except Exception as e:
-                print(e)
+                # print(f'Credential is incorrect' + e)
+                logging.error(e)
+                return False
+            return True
 
     # Downloading Files from S3
     # TODO: programmatically fetch all keys from each s3 object to download in mass
