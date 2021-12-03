@@ -1,0 +1,30 @@
+{
+    "workbench.preferredHighContrastColorTheme": "Red",
+    "workbench.colorTheme": "Monokai",
+    "debug.onTaskErrors": "debugAnyway",
+    "go.toolsManagement.autoUpdate": true,
+    "[solidity]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
+    "terminal.integrated.tabs.enabled": false,
+    "typescript.updateImportsOnFileMove.enabled": "never",
+    "solidity.compileUsingRemoteVersion": "v0.8.7+commit.e28d00a7",
+    "git.confirmSync": false,
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "window.zoomLevel": 1,
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "terminal.integrated.profiles.windows": {
+        "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe (migrated)": {
+            "path": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+            "args": []
+        }
+    },
+    "editor.formatOnSave": true,
+    "hediet.vscode-drawio.codeLinkActivated": false,
+    "vyper.command": "C:\\Users\\Eric\\AppData\\Local\\Programs\\Python\\Python39\\Scripts\\vyper.exe"
+}
