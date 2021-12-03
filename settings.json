@@ -1,0 +1,8 @@
+{
+    "workbench.colorTheme": "Default Dark+",
+    "terminal.integrated.defaultProfile.osx": "zsh",
+    "editor.formatOnSave": true,
+    // "python.defaultInterpreterPath": "home/code/nucamp-python/Python/2-SQL/venv/bin/python",
+    "redhat.telemetry.enabled": true
+    // "python.linting.enabled": true
+}
