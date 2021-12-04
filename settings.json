@@ -2,7 +2,7 @@
     "workbench.colorTheme": "Default Dark+",
     "terminal.integrated.defaultProfile.osx": "bash",
     "editor.formatOnSave": true,
-    "redhat.telemetry.enabled": true
+    "redhat.telemetry.enabled": true,
     "hediet.vscode-drawio.codeLinkActivated": false,
     // "python.linting.enabled": true
 }
