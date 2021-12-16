@@ -10,7 +10,9 @@ def binary_search(the_list, target):
         # pivot = 4.5 --> 5 (floor division rounds up)
         pivot = (lower_bound + upper_bound) // 2
         # var value of element at pivot index
+        print("pivot", pivot)
         pivot_val = the_list[pivot]
+        print("pivot_val", pivot_val)
         # if pivot value (at pivot index) is same as target value, return pivot index
         # having this check first makes following conditionals simplier
         if pivot_val == target:
