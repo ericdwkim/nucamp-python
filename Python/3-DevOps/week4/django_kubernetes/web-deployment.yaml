@@ -13,8 +13,7 @@ spec:
   selector:
     matchLabels:
       io.kompose.service: web
-  strategy:
-    type: Recreate
+  strategy: {}
   template:
     metadata:
       annotations:
@@ -36,12 +35,5 @@ spec:
           ports:
             - containerPort: 8000
           resources: {}
-          volumeMounts:
-            - mountPath: /usr/src/app/
-              name: web-claim0
       restartPolicy: Always
-      volumes:
-        - name: web-claim0
-          persistentVolumeClaim:
-            claimName: web-claim0
 status: {}
