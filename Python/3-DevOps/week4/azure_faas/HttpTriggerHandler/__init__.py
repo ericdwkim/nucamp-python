@@ -5,7 +5,7 @@ import azure.functions as func
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
-    ctime = datetime.dateime.now().time()
+    ctime = datetime.datetime.now().time()
 
     name = req.params.get('name')
     if not name:
