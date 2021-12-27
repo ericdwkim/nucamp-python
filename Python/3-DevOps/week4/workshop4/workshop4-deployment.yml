@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workshop4
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: workshop4
+  template:
+    metadata:
+      labels:
+        app: workshop4
+    spec:
+      containers:
+        - args:
+            - python
+            - manage.py
+            - runserver
+            - 0.0.0.0:8000
+          name: workshop4
+          image: edwkdjangoregistry.azurecr.io/workshop4:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DATABASE_HOST
+              value: "ektestsqlserver.postgres.database.azure.com"
+            - name: DATABASE_USER
+              value: "remotelard7"
+            - name: DATABASE_PASSWORD
+              value: "1Lx59N46rsJvWTsNmmX8XA"
+            - name: DATABASE_NAME
+              value: "nc_tutorials_db"
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: "app"
+                    operator: In
+                    values:
+                      - workshop4
+              topologyKey: "kubernetes.io/hostname"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: workshop4-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8000
+  selector:
+    app: workshop4
